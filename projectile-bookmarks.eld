@@ -1,0 +1,1 @@
+("~/.emacs.d/" "~/Programming/Cpp_programming/C++_InLinux/Game/")

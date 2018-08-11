@@ -1,26 +1,52 @@
+;;; init.el --- M00ns7ruck's configurations
+
+;;; Commentary:
+;; Personal Emacs configurations
+
+;;; Code:
+;; - Greet and check versions
+;; - Load newest byte code
+;; - Temporal reduction of garbage collection (during start)
+;; - Create the files / directories of the configuration
+;; - Call the core of the configurations
+
+
+
 ;;=================================
 ;;= 1. Greeting and verions check =
 ;;=================================
-
 (defvar master (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-(message "Hello, %s sama, glad you are here again!\nDo your best :\)" master)
+(message "Hello, %s sama, glad you are here again!\nDo your best :)" master)
 
 (when (version< emacs-version "24.4")
   (error "Please upgrade me, %s sama, my version is: %s and it should be at least: 24.4" master emacs-version))
+;;=================================
+
 
 
 ;;==============================
 ;;=  2. Load newest byte code  =
 ;;==============================
-
 (setq load-prefer-newer t)
+;;==============================
 
-;;------------------------------
+
+
+;;==============================================================
+;;=  3. Temporarily reduce garbage collection during start up  =
+;;==============================================================
+(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
+  "Initial value of `gc-cons-threshold' at start-up time.")
+(setq gc-cons-threshold 50000000)
+(add-hook 'after-init-hook
+	  (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
+;;==============================================================
+
 
 
 ;;====================================================
-;;=  3. Manage and craete structure for the configs  =
+;;=  4. Manage and create structure for the configs  =
 ;;====================================================
 
 (defvar conf-root-dir
@@ -31,6 +57,10 @@
   (expand-file-name "LanguageLayerSettings" conf-root-dir)
   "Contains settings and configrations of programming languages.")
 
+(defvar customs-file
+  (expand-file-name "custom.el" conf-root-dir)
+  "Contains settings donw via the UI.")
+
 ;; Create folder for the configurations
 (unless (file-exists-p conf-root-dir)
   (make-directory conf-root-dir)
@@ -38,25 +68,11 @@
 (unless (file-exists-p languageLayer-dir)
   (make-directory languageLayer-dir)
   (message "The directory for programming languages was created"))
+(when (file-exists-p customs-file)
+  (load customs-file))
 
-;; Write backups in its onw directory
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-		 (concat user-emacs-directory "Backup")))))
-
-
-;; - Include the directories in the load path
-(add-to-list 'load-path conf-root-dir)
-(add-to-list 'load-path languageLayer-dir)
-
-
-;;====================================================
-
-
-;;=============================
-;;=  4. Configure the backup  =
-;;=============================
-
+;; - Write backups in its onw directory
+;; And configure backups
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
 		 (concat user-emacs-directory "Backup")))))
@@ -76,33 +92,21 @@
 
 (setq auto-save-list-file-prefix nil)    ; Disable creation of the directory auto-save-list
 
-;;=============================
 
+;; - Include the directories in the load path
+(add-to-list 'load-path conf-root-dir)
+(add-to-list 'load-path languageLayer-dir)
+;;====================================================
 
-;;==============================================================
-;;=  5. Temporarily reduce garbage collection during start up  =
-;;=         Purcell's emacs settings(file: init.el)            =
-;;==============================================================
-
-(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
-  "Initial value of `gc-cons-threshold' at start-up time.")
-(setq gc-cons-threshold (* 128 1024 1024))
-(add-hook 'after-init-hook
-	  (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
-
-;;==============================================================
 
 
 ;;====================================
-;;=  6. Call the core configurations =
+;;=  5. Call the core configurations =
 ;;====================================
-
 (require 'core)
-
 ;;====================================
 
-
-(package-initialize)
+;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -110,7 +114,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-mode flycheck yasnippet-snippets yasnippet neotree))))
+    (lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

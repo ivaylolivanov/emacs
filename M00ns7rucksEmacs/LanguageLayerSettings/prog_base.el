@@ -1,24 +1,64 @@
+;;; prog_base --- All the base stuff for programming
+
+;;; Commentary:
+;; - Main settings for programming
+
+
+
+;;; Code:
 ;;===========================
 ;;= Base of the programming =
 ;;=        settings         =
 ;;===========================
-;; - Automatic indent with <RET>
-;; - Yasnippet
+;; - Automatic indent with <RET>; Indent / complete with <TAB>
+;; - Show number of line in programming modes
+;; - Hippie expand instead dabbrev
+;; - Align pretty
 ;; - GDB
 ;; - Compile a makefile with <F5>
-;; - Flycheck
+;; - Projectile
+;; - Paren
+;; - Rainbow-delimiters
+;; - Rainbow-mode
+;; - Yasnippet
 ;; - Lsp-mode
+;; - Company
+;; - Company-lsp
+;; - Flyspell
+;; - Flycheck
+;; - Lsp-ui
+;; - Call different languages' configurations
+
 
 
 
 ;; - Automatic indent with <RET>
 (global-set-key (kbd "RET") 'newline-and-indent)
+;; - Indent or complete with <TAB>
+(setq tab-always-indent 'complete)
+
+;; - Show number of line in programming modes
+(add-hook 'prog-mode-hook 'linum-mode)
 
 
-;; - Yasnippet
-(require 'yasnippet)
-(yas-reload-all)
-(add-hook 'prog-mode-hook #'yas-minor-mode)
+;; - Use hippie expand instead dabbrev
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+
+(global-set-key (kbd "M-/") #'hippie-expand)
+(global-set-key (kbd "s-/") #'hippie-expand)
+
+
+;; - Align code in a pretty way
+(global-set-key (kbd "C-x \\") #'align-regexp)
 
 
 ;; - GDB to use many windows mode
@@ -27,7 +67,7 @@
 
 
 ;; - Compile a makefile with <F5>
-;; These settings are taken from prelude emacs
+;; These settings are taken from prelude Emacs
 (defun prelude-colorize-compilation-buffer ()
   "Colorize a compilation mode buffer."
   (interactive)
@@ -45,7 +85,7 @@
 ;; Taken from prelude-c.el:48
 (defun prelude-makefile-mode-defaults ()
   (whitespace-toggle-options '(tabs))
-  (setq indent-tabs-mode t))
+  (setq=default indent-tabs-mode nil))
 
 (setq prelude-makefile-mode-hook 'prelude-makefile-mode-defaults)
 
@@ -53,29 +93,167 @@
                                 (run-hooks 'prelude-makefile-mode-hook)))
 
 
-;; - Enable flycheck globally
-(require ' flycheck)
-(global-flycheck-mode)
+
+;;==============
+;;= Projectile =
+;;==============
+(use-package projectile
+  :ensure t
+
+  :config
+  (setq projectile-completion-system 'ivy)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (projectile-mode +1))
+;;==============
 
 
 
-;;==============================
-;;= Add and configure lsp-mode =
-;;==============================
-(add-to-list 'load-path "/home/ivo/.emacs.d/elpa/lsp-mode")
-(require 'lsp-mode)
+;;=========
+;;= Paren =
+;;=========
+(use-package paren
+  :config
+  (show-paren-mode +1))
+;;=========
 
-(lsp-define-stdio-client
- lsp-prog-major-mode
- "language-id"
- (lambda () default-directory)
- '("/my/lsp/server" "and" "args"))
 
-(add-hook 'prog-major-mode #'lsp-prog-major-mode-enable)
 
-(require 'lsp-imenu)
-(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-;;==============================
+;;=======================
+;;= Raindbow-delimiters =
+;;=======================
+(use-package rainbow-delimiters
+  :ensure t)
+;;=======================
+
+
+
+;;================
+;;= Rainbow-mode =
+;;================
+(use-package rainbow-mode
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-mode))
+;;================
+
+
+
+;;=============
+;;= Yasnippet =
+;;=============
+(require 'yasnippet)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+;;=============
+
+
+
+;;=======
+;;= Lsp =
+;;=======
+(use-package lsp-mode
+
+  :ensure t
+  :config
+
+  ;; lsp-imenu everywhere we have LSP
+  (require 'lsp-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+
+  ;; (lsp-define-stdio-client
+  ;;  lsp-prog-major-mode
+  ;;  "language-id"
+
+  ;; lsp-python-enable defined
+  ;; Configure lsp for python (must be in project)
+  (lsp-define-stdio-client lsp-python "python"
+                           #'projectile-project-root
+                           '("pyls"))
+
+  ;; activate when python-mode is activated
+  ;; lsp-python-enable is created by macro above
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (lsp-python-enable)))
+
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
+      (lsp--set-configuration lsp-cfg)))
+
+  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
+
+  (defun my-set-projectile-root ()
+    (when lsp--cur-workspace
+      (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
+  (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
+;;=======
+
+
+
+;;===========
+;;= Company =
+;;===========
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.5)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t)
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
+;;===========
+
+
+
+;;===============
+;;= Company-lsp =
+;;===============
+(use-package company-lsp
+  :ensure t
+  :config
+  (require 'company-lsp)
+  (push 'company-lsp company-backends)
+  (add-hook 'after-init-hook 'global-company-mode))
+;;===============
+
+
+
+;;============
+;;= Flyspell =
+;;============
+(use-package flyspell
+  :config
+  (when (eq system-type 'windows-nt)
+    (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/"))
+  (setq ispell-program-name "aspell" ; use aspell instead of ispell
+        ispell-extra-args '("--sug-mode=ultra"))
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode))
+;;============
+
+
+
+;;============
+;;= Flycheck =
+;;============
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+;;============
+
+
+
+;;==========
+;;= Lsp-ui =
+;;==========
+(use-package lsp-ui
+  :ensure t
+  :config
+  (require 'lsp-ui))
+;;==========
 
 
 
@@ -83,8 +261,9 @@
 ;;= Calls configurations for different =
 ;;=             languages              =
 ;;======================================
-
+(require 'cAndCpp_conf)
 
 ;;======================================
 
 (provide 'prog_base)
+;;; prog_base.el ends here
