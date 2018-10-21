@@ -1,0 +1,25 @@
+#include "Game.hpp"
+/*
+  game loop:
+  - handle any user input
+  - update all object eg. positions and other
+  - render changes to the display
+ */
+
+int main( int argc, char* argv[] )
+{
+
+    Game* game = new Game();
+
+    game->init( "IT Project - Physics recreation", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, 0 );
+    while ( game->isRunning() )
+    {
+	game->handleEvents();
+	game->update();
+	game->render();
+    }
+
+    game->clean();
+
+    return 0;
+}

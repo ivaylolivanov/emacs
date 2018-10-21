@@ -1,0 +1,8 @@
+#ifndef COLLIDER_COMPONENT
+#define COLLIDER_COMPONENT
+
+#include <string>
+
+
+
+#endif COLLIDER_COMPONENT

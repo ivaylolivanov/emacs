@@ -1,0 +1,83 @@
+#include "Game.hpp"
+
+
+SDL_texture* player_tex;
+
+
+Game::Game()
+{}
+
+Game::~Game()
+{}
+
+void Game::init( const char* title, int xWinPos, int yWinPos, int windowWidth, int windowHeight, bool fullscreen )
+{
+    int flags = 0;
+    if ( fullscreen )
+	flags = SDL_WINDOW_FULLSCREEN;
+
+
+
+    if ( SDL_Init( SDL_INIT_EVERYTHING ) == 0 )
+    {
+	printf( "SDL initialized successfully!\n" );
+	window = SDL_CreateWindow( title, xWinPos, yWinPos, windowWidth, windowHeight, flags );
+
+	if ( window )
+	    printf( "Window successfully created!\n" );
+
+	renderer = SDL_CreateRenderer( window, -1, 0 );
+	if ( renderer )
+	{
+	    printf( "Renderer initialized successfully!\n" );
+	    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+	}
+
+	isActive = true;
+    }
+    else
+	isActive = false;
+
+}
+
+void Game::handleEvents()
+{
+    SDL_Event event;
+    SDL_PollEvent( &event );
+
+    switch ( event.type)
+    {
+	case SDL_QUIT:
+	    isActive = false;
+	    break;
+
+	default:
+	    break;
+    }
+}
+
+void Game::update()
+{
+    ++counter;
+    printf( "%d\n", counter );
+}
+
+void Game::render()
+{
+    SDL_RenderClear( renderer );
+
+    // Rendering
+
+    SDL_RenderPresent( renderer );
+}
+
+void Game::clean()
+{
+    SDL_DestroyWindow( window );
+    SDL_DestroyRenderer( renderer );
+    SDL_Quit();
+
+    printf( "SDL cleaned!\n" );
+}
+
+bool Game::isRunning() { return this->isActive; }

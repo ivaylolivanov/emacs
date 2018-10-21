@@ -13,21 +13,23 @@
 ;; - NeoTree, UndoTree, Dired, Recentf, Ediff and Eldoc
 ;; - Go-to-address mode
 ;; - Warn by oppening large files
+;; - Revert buffers automatically
+;; - Delete selection with keypress
 ;; - Highlight current line
-;; - Show line numbers
-;; - Show trailing whitespaces
+;; - Highlight trailing whitespaces
+;; - Delete trailing whitespaces before save
 ;; - Save cursor position
-;; - Revert buffer with <F5>
+;; - Newline at end of the files
+;; - Revert buffer with <F6>
 ;; - Windmove
 ;; - Volatile Highlight
 ;; - Ivy
 ;; - Swiper
 ;; - Counsel
 
-
-
-
 ;;; Code:
+
+
 
 ;;====================
 ;;= Initialize melpa =
@@ -118,15 +120,18 @@
 ;; - Dashboard
 (use-package dashboard
   :ensure t
+  :diminish dashboard-mode
   :config
-  (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "Welcome, Make your worth it!")
-  (setq dashboard-startup-banner "~/Pictures/yukino-yukinoshita-wallpaper-hd-1280x1024-61533.jpg")
+  (setq dashboard-startup-banner "~/Pictures/images.png")
 
   (setq dashboard-items '((recents  . 10)
                           (bookmarks . 5)
                           (agenda . 5)
-                          (registers . 5))))
+                          (registers . 5)))
+
+  (dashboard-setup-startup-hook)
+  )
 ;;==============================
 
 
@@ -192,7 +197,7 @@
 (use-package recentf
   :ensure t
   :config
-  (setq recentf-save-file (expand-file-name "recentf" backup-directory-alist)
+  (setq ;;recentf-save-file (expand-file-name "recentf" backup-directory-alist)
         recentf-max-saved-items 5000
         recentf-max-menu-items 30
         recentf-auto-cleanup 'never) ;; Because of problems with remote files
@@ -246,9 +251,9 @@
 (setq require-final-newline t)
 
 
-;; - Bind revert-buffer command to <f5>
+;; - Bind revert-buffer command to <F6>
  (global-set-key
-  (kbd "<f5>")
+  (kbd "<f6>")
   (lambda (&optional force-reverting)
     "Interactive call to revert-buffer. Ignoring the auto-save
  file and not requesting for confirmation. When the current buffer
@@ -327,7 +332,7 @@
   (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c a") 'counsel-ag)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (global-set-key (kbd "C-c l") 'counsel-locate)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 ;;=============
 

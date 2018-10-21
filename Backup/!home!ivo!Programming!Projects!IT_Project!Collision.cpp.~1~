@@ -1,0 +1,10 @@
+#include "Collision.hpp"
+
+bool Collision::AABB( const  &rec1, const int &rec2 )
+{
+    if ( rec1.x + rec1.w )
+    {
+
+    }
+
+}

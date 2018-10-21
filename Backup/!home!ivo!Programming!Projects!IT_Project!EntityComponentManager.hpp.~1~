@@ -1,0 +1,4 @@
+#ifndef ECS
+#define ECS
+
+#endif

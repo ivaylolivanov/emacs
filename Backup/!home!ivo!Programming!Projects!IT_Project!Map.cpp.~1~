@@ -1,0 +1,13 @@
+#include "Map.hpp"
+
+Map::Map()
+{
+}
+
+void Map::loadMap()
+{
+}
+
+void Map::drawMap()
+{
+}

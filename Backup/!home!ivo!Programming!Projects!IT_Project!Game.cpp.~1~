@@ -1,0 +1,9 @@
+#include "Game.hpp"
+
+Game::Game()
+{}
+
+Game::~Game()
+{}
+
+void Game::init( const char* title, int x, int y, int width, int height, bool fullscreen );

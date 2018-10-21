@@ -1,0 +1,57 @@
+#ifndef POSITION_COMPONENT
+#define POSITION_COMPONENT
+
+#include "Components.hpp"
+#include "../Vector2D.hpp"
+
+class TransformComponent : public Component
+{
+private:
+    Vector2D position;
+    Vector2D velocity;
+    int speed = 3;
+
+public:
+
+    // Constructors:
+    TransformComponent() {
+	position.setX( 0.0f );
+	position.setY( 0.0f );
+    }
+
+    TransformComponent( float x, float y ) {
+	position.setX( x );
+	position.setY( y );
+    }
+
+    // Setters
+    void setXPos  ( int x ) { position.setX( x ); }
+    void setYPos  ( int y ) { position.setY( y ); }
+    void setSpeed ( int spd) { this->speed = spd; }
+
+    // Getters
+    int getXPos () { return position.getX(); }
+    int getYPos () { return position.getY(); }
+    int getSpeed() { return this->speed; }
+    Vector2D& getPosition () { return this->position; }
+    Vector2D& getVelocity () { return this->velocity; }
+
+
+
+    void init() override {
+	velocity.setX( 0.0f );
+	velocity.setY( 0.0f );
+    }
+
+    void update() override {
+
+	float tempX = position.getX();
+	float tempY = position.getY();
+
+	position.setX( tempX + velocity.getX() * this->speed);
+	position.setY( tempY + velocity.getY() * this->speed);
+    }
+
+};
+
+#endif

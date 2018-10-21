@@ -1,0 +1,61 @@
+#ifndef SPRITE_COMPONENT
+#define SPRITE_COMPONENT
+
+#include "SDL2/SDL.h"
+#include "Components.hpp"
+#include "../TextureManager.hpp"
+
+class SpriteComponent : public Component
+{
+private:
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+    SDL_Texture* texture;
+    TransformComponent* transform;
+
+    int frames = 0;
+    int frameDelay = 100;
+    bool isAnimated = false;
+
+
+public:
+    void setTexture( const char* path ) { this->texture = TextureManager::LoadTexture( path ); }
+
+
+    SpriteComponent() = default;
+    SpriteComponent( const char* path ) { setTexture( path ); }
+    SpriteComponent( const char* path, int numFrm, int frmDelay ) {
+	this->isAnimated = true;
+	this->frames = numFrm;
+	this->frameDelay = frmDelay;
+	setTexture( path );
+    }
+
+    ~SpriteComponent() { SDL_DestroyTexture( this->texture ); }
+
+
+    void init() override {
+	this->transform = &entity->getComponent< TransformComponent >();
+
+	srcRect.x = srcRect.y = 0;
+	srcRect.w = transform->getWidth();
+	srcRect.h = transform->getHeight();
+    }
+
+    void update() override {
+
+	if( this->isAnimated )
+	    srcRect.x = srcRect.w * static_cast< int >( ( SDL_GetTicks() / frameDelay ) % frames );
+
+
+	destRect.x = static_cast< int >( transform->getXPos() );
+	destRect.y = static_cast< int >( transform->getYPos() );
+
+	destRect.w = transform->getWidth() * transform->getScale();
+	destRect.h = transform->getHeight() * transform->getScale();
+    }
+    void draw() override { TextureManager::Draw( texture, srcRect, destRect ); }
+
+};
+
+#endif

@@ -126,6 +126,7 @@
   (setq dashboard-startup-banner "~/Pictures/images.png")
 
   (setq dashboard-items '((recents  . 10)
+			  (projects . 3)
                           (bookmarks . 5)
                           (agenda . 5)
                           (registers . 5)))
