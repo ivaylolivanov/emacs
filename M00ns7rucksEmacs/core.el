@@ -96,8 +96,6 @@
 
 ;; replace buffer-menu with ibuffer
 (global-set-key (kbd "C-x C-b") #'ibuffer)
-;; - Display ibuffer in new window
-(setq ibuffer-use-other-window t)
 
 
 ;; - Confirmation for quitting emacs with y/ n

@@ -114,7 +114,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
+    (py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

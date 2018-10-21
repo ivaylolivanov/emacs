@@ -1,0 +1,6 @@
+;;; package --- Python configurations
+
+
+;;; Commentary:
+;;; Code:
+(provide 'python_conf.el)
