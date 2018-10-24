@@ -1,0 +1,11 @@
+# Ignored files for .emacs.d
+
+elpa/
+Backup/
+GPATH
+GRTAGS
+GTAGS
+bookmarks
+recentf
+snippets/
+semanticdb
