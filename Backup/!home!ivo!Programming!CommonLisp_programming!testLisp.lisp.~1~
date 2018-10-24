@@ -1,0 +1,3 @@
+(defvar a "a variable")
+
+(defun b "a function"
