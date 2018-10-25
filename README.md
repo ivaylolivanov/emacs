@@ -1,1 +1,7 @@
-# M00ns7ruck's Emacs configurations
+My Emacs configurations
+
+Currently support
+
+C/C++
+Python
+Lisp
