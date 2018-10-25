@@ -1,6 +1,6 @@
-My Emacs configurations
+<h3>My Emacs configurations</h3>
 
-Currently support
+Currently supported:
 
 C/C++
 Python
