@@ -14,6 +14,8 @@
 ;; - Lsp-mode
 ;; - Company-lsp
 ;; - Lsp-ui
+;; - Emacs-cquery
+;; - Lsp-python
 
 
 
@@ -22,48 +24,7 @@
 ;;=======
 (use-package lsp-mode
 
-  :ensure t
-  :config
-
-  ;; lsp-imenu everywhere we have LSP
-  (require 'lsp-imenu)
-  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-
-  ;; - Example to add language:
-  ;; (lsp-define-stdio-client
-  ;;  lsp-prog-major-mode
-  ;;  "language-id"
-
-  ;; Configure lsp for python (must be in project)
-  ;; Lsp-python-enable defined
-  (lsp-define-stdio-client lsp-python "python"
-                           #'projectile-project-root
-                           '("pyls"))
-
-  ;; Activate when python-mode is activated
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (lsp-python-enable)))
-
-
-
-  (defun lsp-set-cfg ()
-    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
-      (lsp--set-configuration lsp-cfg)))
-
-  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
-
-  (defun my-set-projectile-root ()
-    (when lsp--cur-workspace
-      (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-  (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
-
-
-
-  ;;
-
-
-
+  :ensure t)
 ;;=======
 
 
@@ -84,11 +45,64 @@
 ;;==========
 ;;= Lsp-ui =
 ;;==========
+
 (use-package lsp-ui
   :ensure t
   :config
   (require 'lsp-ui))
+
 ;;==========
+
+
+
+;;================
+;;= Emacs-cquery =
+;;================
+
+(use-package cquery
+  :ensure t
+  :config
+  (setq cquery-executable "/usr/bin/cquery")
+
+  (defun cquery//enable ()
+    (condition-case nil
+	(lsp-cquery-enable)
+      (user-error nil)))
+
+  (use-package cquery
+    :commands lsp-cquery-enable
+    :init (add-hook 'c-mode-hook #'cquery//enable)
+    (add-hook 'c++-mode-hook #'cquery//enable))
+
+  (with-eval-after-load 'projectile
+  (setq projectile-project-root-files-top-down-recurring
+        (append '("compile_commands.json"
+                  ".cquery")
+                projectile-project-root-files-top-down-recurring)))
+
+  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "misspeak"))
+  (setq cquery-sem-highlight-method 'font-lock)
+
+  )
+
+;;================
+
+
+
+;;==============
+;;= Lsp-python =
+;;==============
+
+
+(use-package lsp-python
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook #'lsp-python-enable)
+  )
+
+;;==============
+
+
 
 (provide 'LSP_conf)
 ;;; LSP_conf.el ends here

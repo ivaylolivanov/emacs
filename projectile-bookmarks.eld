@@ -1,1 +1,1 @@
-("~/Programming/Projects/IT_Project/" "~/.emacs.d/" "~/Playground/EmacsConfigs/" "~/Programming/Cpp_programming/C++_InLinux/LevelUp-ing/MiscCppCode/" "~/Programming/C-sharp_programming/Discriminant/" "~/Programming/Cpp_programming/C++_InLinux/Game/")
+("~/.emacs.d/" "~/Programming/Projects/IT_Project/" "~/Programming/Cpp_programming/C++_InLinux/LevelUp-ing/MiscCppCode/" "~/Programming/C-sharp_programming/Discriminant/" "~/Programming/Cpp_programming/C++_InLinux/Game/")

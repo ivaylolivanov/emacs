@@ -106,6 +106,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(lsp-project-whitelist (quote ("^/home/ivo/Programming/Projects/IT_Project/$")))
  '(package-selected-packages
    (quote
     (counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
