@@ -2,6 +2,6 @@
 
 Currently supported:
 
-C/C++
-Python
-Lisp
+C/C++<br />
+Python<br />
+Lisp<br />
