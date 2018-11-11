@@ -1,7 +1,8 @@
-<h3>My Emacs configurations</h3>
+<h2>My personal Emacs configurations</h2>
 
-Currently supported:
+Currently supports:
 
 C/C++<br />
+<ul><li>LSP</li></ul>
 Python<br />
 LISP - Slime <br />
