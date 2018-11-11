@@ -4,4 +4,4 @@ Currently supported:
 
 C/C++<br />
 Python<br />
-Lisp<br />
+LISP - Slime <br />
