@@ -4,6 +4,7 @@
 ;;=======================
 ;;= Core configurations =
 ;;=======================
+;; - Start Emacs as server
 ;; - Initialize melpa
 ;; - Set UTF-8 as default encoding
 ;; - Discard useless UI things
@@ -28,6 +29,13 @@
 ;; - Counsel
 
 ;;; Code:
+
+
+
+;;====================
+;;= Initialize melpa =
+;;====================
+(server-start)
 
 
 
