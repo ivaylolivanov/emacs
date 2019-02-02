@@ -195,6 +195,7 @@
 (require 'cAndCpp_conf)
 (require 'python_conf)
 (require 'lisp_conf)
+(require 'rust_conf)
 
 ;;======================================
 
