@@ -343,7 +343,7 @@
 ;;= (something like main function) =
 ;;==================================
 (require 'prog_base)
-
+(require 'org_settings)
 ;;==================================
 
 (provide 'core)
