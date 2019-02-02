@@ -1,8 +1,0 @@
-#ifndef COLLIDER_COMPONENT
-#define COLLIDER_COMPONENT
-
-#include <string>
-#include <SDL2/SDL.h>
-#
-
-#endif COLLIDER_COMPONENT

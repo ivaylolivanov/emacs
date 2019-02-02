@@ -1,7 +1,0 @@
-%clang
-%cpp -std=gnu++14
--string
--SDL2
-
-# Includes
--I "SDL2/SDL.h"

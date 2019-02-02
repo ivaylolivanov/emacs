@@ -1,4 +1,0 @@
-%clang
-%cpp -std=gnu++14
--string
--SDL2/SDL

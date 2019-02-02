@@ -1,5 +1,0 @@
-#include "GameObject.hpp"
-
-GameObject::GameObject( const char* textureSheet, SDL_Renderer* rend)
-{
-}
