@@ -12,7 +12,6 @@
 ;;= C / C++ Configurations =
 ;;==========================
 ;; - Set styles for C/C++ and hook them
-;; - Lsp-clangd
 ;; - Cquery
 
 
@@ -84,25 +83,11 @@
 
 
 
-;;==============
-;;= Lsp-clangd =
-;;==============
-(use-package lsp-clangd
-  :ensure t
-  :init
-  (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
-;;==============
-
-
-
 ;;==========
 ;;= Cquery =
 ;;==========
 (use-package cquery
   :ensure t
-  :init
-  (add-hook 'c-mode-hook #'cquery//enable)
-  (add-hook 'c++-mode-hook #'cquery//enable)
   :config
   (setq cquery-executable "/usr/bin/cquery") ;; Path to cquery executable
   (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
@@ -117,17 +102,8 @@
 
   (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
 
-  ;; (setq cquery-sem-highlight-method 'font-lock)
-
   ;; For rainbow semantic highlighting
-  (cquery-use-default-rainbow-sem-highlight)
-
-  (defun cquery//enable ()
-    (condition-case nil
-	(lsp-cquery-enable)
-      (user-error nil)))
-
-  (lsp-cquery-enable))
+  (cquery-use-default-rainbow-sem-highlight))
 ;;==========
 
 

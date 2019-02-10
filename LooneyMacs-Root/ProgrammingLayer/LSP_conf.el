@@ -11,11 +11,10 @@
 ;;======================
 ;;= LSP configurations =
 ;;======================
-;; - Lsp-mode
+;; - Lsp-mode; Hook modes to lsp
 ;; - Company-lsp
 ;; - Lsp-ui
 ;; - Emacs-cquery
-;; - Lsp-python
 
 
 
@@ -24,7 +23,14 @@
 ;;=======
 (use-package lsp-mode
 
-  :ensure t)
+  :ensure t
+  :init (setq lsp-auto-guess-root t)
+  :hook
+  ((c-mode c++-mode objc-mode python-mode-hook) . lsp)
+  :config
+  (require 'lsp-clients)
+  ;; (add-hook 'python-mode-hook 'lsp)
+  )
 ;;=======
 
 
@@ -64,16 +70,6 @@
   :config
   (setq cquery-executable "/usr/bin/cquery")
 
-  (defun cquery//enable ()
-    (condition-case nil
-	(lsp-cquery-enable)
-      (user-error nil)))
-
-  (use-package cquery
-    :commands lsp-cquery-enable
-    :init (add-hook 'c-mode-hook #'cquery//enable)
-    (add-hook 'c++-mode-hook #'cquery//enable))
-
   (with-eval-after-load 'projectile
   (setq projectile-project-root-files-top-down-recurring
         (append '("compile_commands.json"
@@ -86,21 +82,6 @@
   )
 
 ;;================
-
-
-
-;;==============
-;;= Lsp-python =
-;;==============
-
-
-(use-package lsp-python
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook #'lsp-python-enable)
-  )
-
-;;==============
 
 
 

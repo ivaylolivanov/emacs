@@ -9,6 +9,7 @@
 ;; - Set UTF-8 as default encoding
 ;; - Discard useless UI things
 ;;     - Set theme
+;;     - Enable winner-mode
 ;;     - Dashboard
 ;; - Install Use-package
 ;; - NeoTree, UndoTree, Dired, Recentf, Ediff and Eldoc
@@ -32,9 +33,9 @@
 
 
 
-;;====================
-;;= Initialize melpa =
-;;====================
+;;=========================
+;;= Start Emacs as server =
+;;=========================
 (server-start)
 
 
@@ -102,10 +103,6 @@
 (fset 'yes-or-no-p 'y-or-n-p) ; Short answers only (y / n)
 
 
-;; replace buffer-menu with ibuffer
-(global-set-key (kbd "C-x C-b") #'ibuffer)
-
-
 ;; - Confirmation for quitting emacs with y/ n
 (setq confirm-kill-emacs                 'y-or-n-p
       confirm-nonexistent-file-or-buffer t)
@@ -124,6 +121,10 @@
    :init
    (load-theme 'spacemacs-dark t))
 
+;; - Enable winner mode
+(when (fboundp 'winner-mode)
+      (winner-mode 1))
+
 ;; - Dashboard
 (use-package dashboard
   :ensure t
@@ -138,8 +139,7 @@
                           (agenda . 5)
                           (registers . 5)))
 
-  (dashboard-setup-startup-hook)
-  )
+  (dashboard-setup-startup-hook))
 ;;==============================
 
 
@@ -156,16 +156,17 @@
 
 
 
-;;============================================
-;;= Configure NeoTree, Dired, Recentf, Ediff =
-;;=                and Eldoc                 =
-;;============================================
+;;=============================================
+;;= Configure NeoTree, Dired, Recentf, Ediff, =
+;;=             Eldoc and Ibuffer             =
+;;=============================================
 ;; - Neotree
 ;; - Undo-Tree
 ;; - Dired
 ;; - Recentf
 ;; - Ediff
 ;; - Eldoc
+;; - Ibuffer
 
 
 
@@ -222,6 +223,31 @@
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
+
+;; - Ibuffer
+;; replace buffer-menu with ibuffer
+(require 'ibuffer)
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+
+;; Use human readable Size column instead of original one
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+;; Modify the default ibuffer-formats
+  (setq ibuffer-formats
+	'((mark modified read-only " "
+		(name 18 18 :left :elide)
+		" "
+		(size-h 9 -1 :right)
+		" "
+		(mode 16 16 :left :elide)
+		" "
+		filename-and-process)))
 ;;============================================
 
 
@@ -235,7 +261,7 @@
 (setq large-file-warning-threshold 100000000)
 
 
-;; revert buffers automatically when underlying files are changed externally
+;; Revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
 

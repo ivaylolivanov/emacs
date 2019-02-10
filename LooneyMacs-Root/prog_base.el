@@ -194,8 +194,8 @@
 (require 'LSP_conf)
 (require 'cAndCpp_conf)
 (require 'python_conf)
-(require 'lisp_conf)
 (require 'rust_conf)
+(require 'c-sharp_conf)
 
 ;;======================================
 

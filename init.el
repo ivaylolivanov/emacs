@@ -17,7 +17,7 @@
 ;;=================================
 (defvar master (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
-(message "Hello, %s sama, glad you are here again!\nDo your best :)" master)
+(message-box "Hello, %s sama, glad you are here again!\nDo your best :)" master)
 
 (when (version< emacs-version "24.4")
   (error "Please upgrade me, %s sama, my version is: %s and it should be at least: 24.4" master emacs-version))
@@ -109,7 +109,7 @@
  '(lsp-project-whitelist (quote ("^/home/ivo/Programming/Projects/IT_Project/$")))
  '(package-selected-packages
    (quote
-    (flycheck-rust racer rust-mode lisp-mode elisp-slime-nav paredit counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
+    (omnisharp flycheck-rust racer rust-mode lisp-mode elisp-slime-nav paredit counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-mode lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck company-lsp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

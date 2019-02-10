@@ -24,6 +24,5 @@
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
-
 (provide 'python_conf)
 ;;; python_conf.el ends here
