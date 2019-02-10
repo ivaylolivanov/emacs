@@ -3,6 +3,7 @@
 Currently supports:
 
 C/C++<br />
-<ul><li>LSP</li></ul>
 Python<br />
-LISP - Slime <br />
+<ul><li>LSP</li></ul>
+C#
+Rust
