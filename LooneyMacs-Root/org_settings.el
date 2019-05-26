@@ -8,6 +8,7 @@
 ;; - Keybindings
 ;; - Add time stamp when To-Do is closed
 ;; - Specify agenda directories
+;; - Enable visual-line-mode within org-mode
 
 
 
@@ -23,7 +24,12 @@
 (setq org-log-done t)
 
 ;; - Specify agenda directories
-(setq org-agenda-files (list '"~/Documents/Notes/"))
+(setq org-agenda-files (list '"/home/sleepyme/Documents/GTD/"))
+
+;; - Enable visual-line-mode within org-mode
+(with-eval-after-load 'org
+  (setq org-startup-indented t) ; Enable 'org-indent-mode' by default
+  (add-hook 'org-mode-hook #'visual-line-mode))
 
 (provide 'org_settings)
 ;;; org_settings.el ends here
