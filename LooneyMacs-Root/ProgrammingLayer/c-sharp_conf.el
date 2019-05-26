@@ -8,11 +8,13 @@
 (use-package omnisharp
   :after company
   :config
+  (company-mode)
+  (flycheck-mode)
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
   (add-hook 'csharp-mode-hook #'flycheck-mode)
   (eval-after-load
       'company
-    '(add-to-list 'company-backends 'company-omnisharp))
+    '(add-to-list 'company-backends #'company-omnisharp))
   (add-hook 'csharp-mode-hook #'company-mode)
   (setq omnisharp-server-executable-path "/home/sleepyme/Downloads/AppImages/omnisharp-roslyn/run"))
 
