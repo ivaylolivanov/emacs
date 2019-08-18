@@ -4,6 +4,5 @@ Currently supports:
 
 C/C++<br />
 Python<br />
-<ul><li>LSP</li></ul>
 C#
 Rust
