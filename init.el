@@ -65,6 +65,12 @@
   (make-directory programmingLayer-dir)
   (message "The directory for programming languages was created"))
 
+;; Org agenda directory
+(defvar gtd-org-agenda-dir
+  (concat (getenv "HOME") "/Documents/GTD/")
+  "Directory for organisational notes.")
+(make-directory gtd-org-agenda-dir :parents)
+
 ;; - Write backups in its onw directory
 ;; And configure backups
 (setq backup-directory-alist

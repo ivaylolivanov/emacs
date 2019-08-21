@@ -11,7 +11,6 @@
 ;; - Enable visual-line-mode within org-mode
 
 
-
 ;;; Code:
 ;; - Activate org
 (require 'org)
@@ -24,7 +23,7 @@
 (setq org-log-done t)
 
 ;; - Specify agenda directories
-(setq org-agenda-files (list '"/home/sleepyme/Documents/GTD/"))
+(setq org-agenda-files (list gtd-org-agenda-dir))
 
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
