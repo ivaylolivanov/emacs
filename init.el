@@ -71,6 +71,12 @@
   "Directory for organisational notes.")
 (make-directory gtd-org-agenda-dir :parents)
 
+;; Omnisharp server location
+(defvar omnisharp-run-location
+  (concat (getenv "HOME")
+          "/.emacs.d/.cache/omnisharp/server/v1.34.1/run")
+  "Location of omnisharp server run executable.")
+
 ;; - Write backups in its onw directory
 ;; And configure backups
 (setq backup-directory-alist

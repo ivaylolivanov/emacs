@@ -16,7 +16,7 @@
       'company
     '(add-to-list 'company-backends #'company-omnisharp))
   (add-hook 'csharp-mode-hook #'company-mode)
-  (setq omnisharp-server-executable-path "/home/sleepyme/Downloads/AppImages/omnisharp-roslyn/run"))
+  (setq omnisharp-server-executable-path omnisharp-run-location))
 
 (provide 'c-sharp_conf)
 ;;; c-sharp_conf.el ends here
