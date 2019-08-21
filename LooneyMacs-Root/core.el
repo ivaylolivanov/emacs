@@ -80,8 +80,7 @@
 ;; - Discard useless UI things =
 ;;==============================
 (setq-default truncate-lines t)          ; Truncate lines
-(setq fringes-outside-margins   t
-      use-package-always-ensure t)
+(setq fringes-outside-margins t)
 (setq inhibit-startup-message t)         ; Remove splash screen
 (blink-cursor-mode -1)                   ; Disable blinking cursor
 (setq scroll-margin 0
