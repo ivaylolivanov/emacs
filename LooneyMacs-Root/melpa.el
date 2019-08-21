@@ -1,7 +1,7 @@
 ;;; package --- Summary
 
 ;;; Commentary:
-;; Setup melpa in separate file to keep the configurations clean
+;; - Setup melpa in separate file to keep the configurations clean
 
 
 
