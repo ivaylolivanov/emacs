@@ -125,9 +125,11 @@
 ;;=============
 ;;= Yasnippet =
 ;;=============
-(require 'yasnippet)
-(yas-reload-all)
-(add-hook 'prog-mode-hook #'yas-minor-mode)
+(use-package yasnippet
+  :ensure t
+  :hook ((prog-mode-hook . yas-minor-mode))
+  :config
+  (yas-reload-all))
 ;;=============
 
 
