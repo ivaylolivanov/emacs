@@ -115,11 +115,11 @@
 
 
 ;; - Set theme
- (use-package spacemacs-theme
-   :ensure t
-   :defer t
-   :init
-   (load-theme 'spacemacs-dark t))
+(use-package spacemacs-theme
+  :ensure t
+  :defer t
+  :init
+  (load-theme 'spacemacs-dark t))
 
 ;; - Enable winner mode
 (when (fboundp 'winner-mode)
