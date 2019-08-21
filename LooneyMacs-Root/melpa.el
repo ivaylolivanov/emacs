@@ -24,6 +24,9 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; Workaround for unavailable packages
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;;========================
 
 (provide 'melpa)
