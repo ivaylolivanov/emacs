@@ -19,7 +19,6 @@
 ;; - Projectile
 ;; - Paren
 ;; - Rainbow-delimiters
-;; - Rainbow-mode
 ;; - Yasnippet
 ;; - Company
 ;; - Flyspell
@@ -120,17 +119,6 @@
 (use-package rainbow-delimiters
   :ensure t)
 ;;=======================
-
-
-
-;;================
-;;= Rainbow-mode =
-;;================
-(use-package rainbow-mode
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-mode))
-;;================
 
 
 
