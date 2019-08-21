@@ -22,15 +22,13 @@
 ;;= Lsp =
 ;;=======
 (use-package lsp-mode
-
   :ensure t
   :init (setq lsp-auto-guess-root t)
-  :hook
-  ((c-mode c++-mode objc-mode python-mode-hook) . lsp)
+  :hook ((c-mode . lsp)
+	 (c++-mode . lsp)
+	 (python-mode-hook . lsp))
   :config
-  (require 'lsp-clients)
-  ;; (add-hook 'python-mode-hook 'lsp)
-  )
+  (require 'lsp-clients))
 ;;=======
 
 
