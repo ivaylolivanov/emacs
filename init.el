@@ -77,6 +77,12 @@
           "/.emacs.d/.cache/omnisharp/server/v1.34.1/run")
   "Location of omnisharp server run executable.")
 
+;; Dashboard banner location
+(defvar dashboard-custom-banner-path
+  (concat (getenv "HOME")
+	  "/Pictures/dashboard_banner.png")
+  "The variable holds the path to my default banner logo.")
+
 ;; - Write backups in its onw directory
 ;; And configure backups
 (setq backup-directory-alist

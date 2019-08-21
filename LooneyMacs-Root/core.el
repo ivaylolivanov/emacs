@@ -143,8 +143,10 @@
   :ensure t
   :diminish dashboard-mode
   :config
-  (setq dashboard-startup-banner "~/Pictures/images.png")
   (setq dashboard-banner-logo-title "Welcome, Make your day worth it!")
+  (if (file-exists-p dashboard-custom-banner-path)
+      (setq dashboard-startup-banner dashboard-custom-banner-path)
+    (setq dashboard-startup-banner 'logo))
 
   (setq dashboard-items '((recents  . 10)
 			  (projects . 3)
