@@ -6,12 +6,12 @@
 ;;=======================
 ;; - Start Emacs as server
 ;; - Initialize melpa
+;; - Install Use-package
 ;; - Set UTF-8 as default encoding
 ;; - Discard useless UI things
 ;;     - Set theme
 ;;     - Enable winner-mode
 ;;     - Dashboard
-;; - Install Use-package
 ;; - NeoTree, UndoTree, Dired, Recentf, Ediff and Eldoc
 ;; - Go-to-address mode
 ;; - Warn by oppening large files
@@ -45,6 +45,20 @@
 ;;====================
 (require 'melpa)
 ;;====================
+
+
+
+;;=====================================
+;;= Install Use-Package and enable it =
+;;=====================================
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-verbose t)
+(setq use-package-always-ensure t)
+;;=====================================
 
 
 
@@ -141,18 +155,6 @@
 
   (dashboard-setup-startup-hook))
 ;;==============================
-
-
-
-;;=====================================
-;;= Install Use-Package and enable it =
-;;=====================================
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-verbose t)
-;;=====================================
 
 
 
