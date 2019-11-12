@@ -60,7 +60,7 @@
   (c-toggle-auto-hungry-state 0)
   (subword-mode 1)
   (c-toggle-syntactic-indentation 1)
-  (c-hungry-delete 1))
+  (c-hungry-delete 0))
 
 
 ;; - Set C++ style
