@@ -17,6 +17,7 @@
 ;; - GDB
 ;; - Compile a makefile with <F5>
 ;; - Projectile
+;; - Magit
 ;; - Paren
 ;; - Rainbow-delimiters
 ;; - Yasnippet
@@ -100,6 +101,18 @@
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (projectile-mode +1))
 ;;==============
+
+
+
+;;=========
+;;= Magit =
+;;=========
+(use-package magit
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status)
+  (setq magit-refresh-status-buffer nil))
+;;=========
 
 
 
