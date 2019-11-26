@@ -53,23 +53,15 @@
 
 (defun my-c-mode-hook()
   (c-set-style "Iv O'Style")
-  (c-toggle-auto-newline 0)
   (auto-fill-mode)
-  (c-toggle-auto-hungry-state 0)
-  (subword-mode 1)
-  (c-toggle-syntactic-indentation 1)
-  (c-hungry-delete 0))
+  (subword-mode 1))
 
 
 ;; - Set C++ style
 (defun my-c++-mode-hook ()
   (c-set-style "Iv O'Style")
-  (c-toggle-auto-newline 0)
   (auto-fill-mode)
-  (c-toggle-auto-hungry-state 0)
-  (subword-mode 1)
-  (c-toggle-syntactic-indentation 1)
-  )
+  (subword-mode 1))
 
 
 
