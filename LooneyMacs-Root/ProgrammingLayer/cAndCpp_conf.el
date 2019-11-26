@@ -12,8 +12,6 @@
 ;;= C / C++ Configurations =
 ;;==========================
 ;; - Set styles for C/C++ and hook them
-;; - Cquery
-
 
 
 
@@ -80,33 +78,6 @@
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;;========================
-
-
-
-;;==========
-;;= Cquery =
-;;==========
-(use-package cquery
-  :ensure t
-  :config
-  (setq cquery-executable "/usr/bin/cquery") ;; Path to cquery executable
-  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
-
-  (with-eval-after-load 'projectile
-  (setq projectile-project-root-files-top-down-recurring
-        (append '("compile_commands.json"
-                  ".cquery")
-                projectile-project-root-files-top-down-recurring)))
-
-  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack" :completion (:detailedLabel t)))
-
-  (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
-
-  ;; For rainbow semantic highlighting
-  (cquery-use-default-rainbow-sem-highlight))
-;;==========
-
-
 
 (provide 'cAndCpp_conf)
 ;;; cAndCpp_conf.el ends here

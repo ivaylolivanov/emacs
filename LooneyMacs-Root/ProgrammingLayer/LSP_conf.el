@@ -14,7 +14,6 @@
 ;; - Lsp-mode; Hook modes to lsp
 ;; - Company-lsp
 ;; - Lsp-ui
-;; - Emacs-cquery
 
 
 
@@ -56,32 +55,6 @@
   (require 'lsp-ui))
 
 ;;==========
-
-
-
-;;================
-;;= Emacs-cquery =
-;;================
-
-(use-package cquery
-  :ensure t
-  :config
-  (setq cquery-executable "/usr/bin/cquery")
-
-  (with-eval-after-load 'projectile
-  (setq projectile-project-root-files-top-down-recurring
-        (append '("compile_commands.json"
-                  ".cquery")
-                projectile-project-root-files-top-down-recurring)))
-
-  (setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "misspeak"))
-  (setq cquery-sem-highlight-method 'font-lock)
-
-  )
-
-;;================
-
-
 
 (provide 'LSP_conf)
 ;;; LSP_conf.el ends here
