@@ -66,10 +66,10 @@
   (message "The directory for programming languages was created"))
 
 ;; Org agenda directory
-(defvar gtd-org-agenda-dir
-  (concat (getenv "HOME") "/Documents/GTD/")
+(defvar org-agenda-dir
+  (concat (getenv "HOME") "/Documents/Notes/")
   "Directory for organisational notes.")
-(make-directory gtd-org-agenda-dir :parents)
+(make-directory org-agenda-dir :parents)
 
 ;; Omnisharp server location
 (defvar omnisharp-run-location

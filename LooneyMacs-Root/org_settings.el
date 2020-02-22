@@ -23,7 +23,7 @@
 (setq org-log-done t)
 
 ;; - Specify agenda directories
-(setq org-agenda-files (list gtd-org-agenda-dir))
+(setq org-agenda-files (list org-agenda-dir))
 
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
