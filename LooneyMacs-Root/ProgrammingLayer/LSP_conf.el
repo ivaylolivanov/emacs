@@ -26,7 +26,7 @@
   :hook ((c-mode . lsp)
 	 (c++-mode . lsp)
 	 (python-mode-hook . lsp)
-	 (javascript-mode-hook . lsp))
+	 (js2-mode-hook . lsp))
   :config
   (setq lsp-idle-delay 0.500)
   (require 'lsp-clients))

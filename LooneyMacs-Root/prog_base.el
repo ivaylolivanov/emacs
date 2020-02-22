@@ -199,6 +199,7 @@
 (require 'python_conf)
 (require 'rust_conf)
 (require 'c-sharp_conf)
+(require 'js_conf)
 
 ;;======================================
 
