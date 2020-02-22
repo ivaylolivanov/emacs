@@ -27,6 +27,7 @@
 	 (c++-mode . lsp)
 	 (python-mode-hook . lsp))
   :config
+  (setq lsp-idle-delay 0.500)
   (require 'lsp-clients))
 ;;=======
 
