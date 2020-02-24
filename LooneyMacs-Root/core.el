@@ -4,7 +4,6 @@
 ;;=======================
 ;;= Core configurations =
 ;;=======================
-;; - Start Emacs as server
 ;; - Initialize melpa
 ;; - Install Use-package
 ;; - Set UTF-8 as default encoding
@@ -28,18 +27,9 @@
 ;; - Ivy
 ;; - Swiper
 ;; - Counsel
+;; - Start Emacs as server
 
 ;;; Code:
-
-
-
-;;=========================
-;;= Start Emacs as server =
-;;=========================
-(server-start)
-
-
-
 ;;====================
 ;;= Initialize melpa =
 ;;====================
@@ -355,6 +345,20 @@
   (global-set-key (kbd "C-c l") 'counsel-locate)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 ;;=============
+
+
+
+;;=========================
+;;= Start Emacs as server =
+;;=========================
+(if (y-or-n-p "Do you want to start emacs as server?")
+    (progn
+      (server-start)
+    )
+  (progn
+    (message-box "NOTE: You are using instance of emacs that is not started as server or is not connected to a server!")
+  )
+)
 
 
 
