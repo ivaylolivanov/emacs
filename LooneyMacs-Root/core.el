@@ -348,6 +348,15 @@
 
 
 
+;;=======================
+;;= Custom key bindings =
+;;=======================
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-M-SPC") 'eval-region)
+
+
+
 ;;=========================
 ;;= Start Emacs as server =
 ;;=========================
