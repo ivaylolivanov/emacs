@@ -11,4 +11,6 @@ projectile-bookmarks.eld
 .cache/
 .lsp-session-v1
 elpa/
+elpy/
+tramp
 transient/
