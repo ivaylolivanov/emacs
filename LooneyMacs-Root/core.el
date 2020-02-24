@@ -353,7 +353,7 @@
 ;;=======================
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
-(global-set-key (kbd "C-M-SPC") 'eval-region)
+(global-set-key (kbd "<f1>") 'eval-region)
 
 
 
