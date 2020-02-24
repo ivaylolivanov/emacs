@@ -15,7 +15,6 @@
 ;; - Hippie expand instead dabbrev
 ;; - Align pretty
 ;; - GDB
-;; - Compile a makefile with <F5>
 ;; - Projectile
 ;; - Magit
 ;; - Paren
@@ -60,33 +59,6 @@
 ;; - GDB to use many windows mode
 (setq gdb-many-windows t
       gdb-show-main t)
-
-
-;; - Compile a makefile with <F5>
-;; These settings are taken from prelude Emacs
-(defun prelude-colorize-compilation-buffer ()
-  "Colorize a compilation mode buffer."
-  (interactive)
-  (when (eq major-mode 'compilation-mode)
-    (let ((inhibit-read-only t))
-      (ansi-color-apply-on-region (point-min) (point-max)))))
-
-;; Setup compilation-mode used by `compile' command
-(require 'compile)
-(setq compilation-ask-about-save nil          ; Save before compiling
-      compilation-always-kill t               ; Kill old compile processes before starting the new one
-      compilation-scroll-output 'first-error) ; Automatically scroll to first
-(global-set-key (kbd "<f5>") 'compile)
-
-;; Taken from prelude-c.el:48
-(defun prelude-makefile-mode-defaults ()
-  (whitespace-toggle-options '(tabs))
-  (setq=default indent-tabs-mode nil))
-
-(setq prelude-makefile-mode-hook 'prelude-makefile-mode-defaults)
-
-(add-hook 'makefile-mode-hook (lambda ()
-                                (run-hooks 'prelude-makefile-mode-hook)))
 
 
 
