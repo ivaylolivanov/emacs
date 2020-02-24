@@ -67,8 +67,8 @@
 
 ;; Org agenda directory
 (defvar org-agenda-dir
-  (concat (getenv "HOME") "/Documents/Notes/")
-  "Directory for organisational notes.")
+  (concat (getenv "HOME") "/Documents/org_agenda/")
+  "Directory for org agenda.")
 (make-directory org-agenda-dir :parents)
 
 ;; Org notes directory
