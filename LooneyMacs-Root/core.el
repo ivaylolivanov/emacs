@@ -12,7 +12,7 @@
 ;;     - Set theme
 ;;     - Enable winner-mode
 ;;     - Dashboard
-;; - NeoTree, UndoTree, Dired, Recentf, Ediff and Eldoc
+;; - UndoTree, Dired, Recentf, Ediff and Eldoc
 ;; - Go-to-address mode
 ;; - Warn by oppening large files
 ;; - Revert buffers automatically
@@ -158,21 +158,15 @@
 
 
 
-;;=============================================
-;;= Configure NeoTree, Dired, Recentf, Ediff, =
-;;=             Eldoc and Ibuffer             =
-;;=============================================
-;; - Neotree
+;;==============================================
+;;= Configure Dired, Recentf, Ediff, Eldoc and =
+;;=                 Ibuffer                    =
+;;==============================================
 ;; - Dired
 ;; - Recentf
 ;; - Ediff
 ;; - Eldoc
 ;; - Ibuffer
-
-
-
-;; - Set key for Neo-Tree
-(global-set-key [f8] 'neotree-toggle)
 
 
 
