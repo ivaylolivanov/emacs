@@ -71,6 +71,12 @@
   "Directory for organisational notes.")
 (make-directory org-agenda-dir :parents)
 
+;; Org notes directory
+(defvar org-notes-dir
+  (concat (getenv "HOME") "/Documents/notes/")
+  "Directory for quick notes.")
+(make-directory org-notes-dir :parents)
+
 ;; Omnisharp server location
 (defvar omnisharp-run-location
   (concat (getenv "HOME")
