@@ -360,14 +360,7 @@
 ;;=========================
 ;;= Start Emacs as server =
 ;;=========================
-(if (y-or-n-p "Do you want to start emacs as server?")
-    (progn
-      (server-start)
-    )
-  (progn
-    (message-box "NOTE: You are using instance of emacs that is not started as server or is not connected to a server!")
-  )
-)
+(server-start)
 
 
 
