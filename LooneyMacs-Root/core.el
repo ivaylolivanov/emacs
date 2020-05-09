@@ -112,7 +112,7 @@
 
 
 ;; - Set font
-(setq default-frame-alist '((font . "Inconsolata-13")))
+(setq default-frame-alist '((font . "Inconsolata-16")))
 (set-face-attribute 'italic nil
 		    :family "Inconsolata")
 
