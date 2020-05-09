@@ -29,6 +29,9 @@
 	 (js2-mode-hook . lsp))
   :config
   (setq lsp-idle-delay 0.500)
+  (setq lsp-auto-guess-root t)
+  (setq lsp-prefer-flymake nil)
+
   (require 'lsp-clients))
 ;;=======
 
