@@ -54,7 +54,8 @@
 (use-package lsp-ui
   :ensure t
   :config
-  (require 'lsp-ui))
+  (require 'lsp-ui)
+  (setq lsp-ui-doc-enable nil))
 
 ;;==========
 
