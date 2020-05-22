@@ -77,12 +77,6 @@
   "Directory for quick notes.")
 (make-directory org-notes-dir :parents)
 
-;; Omnisharp server location
-(defvar omnisharp-run-location
-  (concat (getenv "HOME")
-          "/.emacs.d/.cache/omnisharp/server/v1.34.1/run")
-  "Location of omnisharp server run executable.")
-
 ;; Dashboard banner location
 (defvar dashboard-custom-banner-path
   (concat (getenv "HOME")
