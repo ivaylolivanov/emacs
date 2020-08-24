@@ -25,13 +25,9 @@
 ;; - Set C style
 (setq c-default-style "k&r"
       c-basic-offset 4)
-(setq-default c-indent-tabs-mode nil
-	      c-indent-level 4
+(setq-default c-indent-level 4
 	      c-argdecl-indent 0
 	      backward-delete-function nil)
-
-;; - Indent or complete with <TAB>
-;; (setq tab-always-indent 'complete)
 
 (defun my-indent-setup ()
   (c-set-offset 'arglist-intro '+))
@@ -45,7 +41,6 @@
 
 (c-add-style "linux-custom"
 	     '("linux"
-	       (indent-tabs-mode nil)
 	       (c-basic-offset . 4)
 	       (c-offsets-alist . ((inline-open . +)
 				   (brace-list-open . +)

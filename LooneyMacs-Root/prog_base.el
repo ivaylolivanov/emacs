@@ -30,7 +30,7 @@
 ;; - Automatic indent with <RET>
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; - Indent or complete with <TAB>
-(setq tab-always-indent 'complete)
+(setq-default indent-tabs-mode nil)
 
 ;; - Show number of line in programming modes
 (add-hook 'prog-mode-hook 'linum-mode)
