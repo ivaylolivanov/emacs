@@ -12,7 +12,6 @@
 ;;= LSP configurations =
 ;;======================
 ;; - Lsp-mode; Hook modes to lsp
-;; - Company-lsp
 ;; - Lsp-ui
 
 
@@ -33,20 +32,6 @@
   (setq lsp-auto-guess-root t)
   (setq lsp-prefer-flymake nil))
 ;;=======
-
-
-
-;;===============
-;;= Company-lsp =
-;;===============
-(use-package company-lsp
-  :ensure t
-  :config
-  (require 'company-lsp)
-  (push 'company-lsp company-backends)
-  (add-hook 'after-init-hook 'global-company-mode))
-;;===============
-
 
 
 ;;==========
