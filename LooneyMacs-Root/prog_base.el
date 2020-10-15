@@ -15,6 +15,7 @@
 ;; - Hippie expand instead dabbrev
 ;; - Align pretty
 ;; - GDB
+;; - Debug Adapter Protocol mode (DAP-mode)
 ;; - Projectile
 ;; - Magit
 ;; - Paren
@@ -59,6 +60,17 @@
 ;; - GDB to use many windows mode
 (setq gdb-many-windows t
       gdb-show-main t)
+
+
+
+;;==========================================
+;;= Debug Adapter Protocol mode (DAP-mode) =
+;;==========================================
+(use-package dap-mode
+  :ensure t
+
+  :config
+  (setq dap-auto-configure-features '(sessions locals controls tooltip)))
 
 
 
