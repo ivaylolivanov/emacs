@@ -12,6 +12,7 @@
 ;;===========================
 ;; - Automatic indent with <RET>; Indent / complete with <TAB>
 ;; - Show number of line in programming modes
+;; - Use subword mode in programming modes
 ;; - Hippie expand instead dabbrev
 ;; - Align pretty
 ;; - GDB
@@ -36,6 +37,8 @@
 ;; - Show number of line in programming modes
 (add-hook 'prog-mode-hook 'linum-mode)
 
+;; - Use subword mode in programming modes
+(add-hook 'prog-mode-hook 'subword-mode)
 
 ;; - Use hippie expand instead dabbrev
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev

@@ -54,7 +54,6 @@
 (defun my-c-mode-hook()
   (c-set-style "linux-custom")
   (auto-fill-mode)
-  (subword-mode 1)
   (my-indent-setup))
 
 
@@ -62,7 +61,6 @@
 (defun my-c++-mode-hook ()
   (c-set-style "linux-custom")
   (auto-fill-mode)
-  (subword-mode 1)
   (my-indent-setup))
 
 
