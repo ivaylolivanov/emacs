@@ -93,6 +93,10 @@
 (column-number-mode t)
 (size-indication-mode t)
 (display-time-mode 1)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 10)))
 
 ;; - Short answers only (y / n)
 (fset 'yes-or-no-p 'y-or-n-p)
