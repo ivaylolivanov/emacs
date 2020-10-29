@@ -11,7 +11,7 @@
 ;;     - Set theme
 ;;     - Enable winner-mode
 ;;     - Dashboard
-;; - UndoTree, Dired, Recentf, Ediff and Eldoc
+;; - Dired, Recentf, Ediff and Eldoc
 ;; - Go-to-address mode
 ;; - Warn by oppening large files
 ;; - Revert buffers automatically
@@ -21,7 +21,6 @@
 ;; - Delete trailing whitespaces before save
 ;; - Save cursor position
 ;; - Newline at end of the files
-;; - Revert buffer with <F6>
 ;; - Windmove
 ;; - Volatile Highlight
 ;; - Ivy
@@ -69,14 +68,13 @@
 ;;==============================
 ;; - Discard useless UI things =
 ;;==============================
-(setq-default truncate-lines t)          ; Truncate lines
-(setq fringes-outside-margins t)
-(setq inhibit-startup-message t)         ; Remove splash screen
-(blink-cursor-mode -1)                   ; Disable blinking cursor
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1) ; Disable scrollbar
-(size-indication-mode t)
+;; - Truncate lines
+(setq-default truncate-lines t)
+;; - Remove splash screen
+(setq inhibit-startup-message t)
+
+;; - Disable blinking cursor
+(blink-cursor-mode -1)
 
 ;; - Turn off interfaces
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -94,32 +92,23 @@
 (line-number-mode t)
 (column-number-mode t)
 (size-indication-mode t)
+(display-time-mode 1)
 
-;; - Make the frame title useful
-(setq frame-title-format
-      '("" invocation-name " - " (:eval (if (buffer-file-name)
-					    (abbreviate-file-name (buffer-file-name))
-					  "%b"))))
-
-(display-time-mode 1) ; Show time in the mode line
-
-(fset 'yes-or-no-p 'y-or-n-p) ; Short answers only (y / n)
+;; - Short answers only (y / n)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 
-;; - Confirmation for quitting emacs with y/ n
-(setq confirm-kill-emacs                 'y-or-n-p
-      confirm-nonexistent-file-or-buffer t)
+;; - Confirmation for quitting emacs with y/n
+(setq confirm-kill-emacs 'y-or-n-p
+      confirm-nonexistent-file-or-buffer nil)
 
 
 ;; - Set font
-(setq default-frame-alist '((font . "Inconsolata-16")))
-(set-face-attribute 'italic nil
-		    :family "Inconsolata")
+(set-face-attribute 'default nil :font "Inconsolata" :height 170)
 
 
 ;; - Set theme
 (use-package spacemacs-theme
-  :ensure t
   :defer t
   :init
   (load-theme 'spacemacs-dark t))
@@ -261,21 +250,6 @@
 (setq require-final-newline t)
 
 
-;; - Bind revert-buffer command to <F6>
- (global-set-key
-  (kbd "<f6>")
-  (lambda (&optional force-reverting)
-    "Interactive call to revert-buffer. Ignoring the auto-save
- file and not requesting for confirmation. When the current buffer
- is modified, the command refuses to revert it, unless you specify
- the optional argument: force-reverting to true."
-    (interactive "P")
-    ;;(message "force-reverting value is %s" force-reverting)
-    (if (or force-reverting (not (buffer-modified-p)))
-        (revert-buffer :ignore-auto :noconfirm)
-      (error "The buffer has been modified"))))
-
-
 
 ;;=============
 ;; - Windmove =
@@ -309,8 +283,7 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "<f6>") 'ivy-resume))
+  (global-set-key (kbd "C-c C-r") 'ivy-resume))
 ;;=========
 
 
@@ -334,15 +307,6 @@
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c a") 'counsel-ag)
-  (global-set-key (kbd "C-c l") 'counsel-locate)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 ;;=============
 
