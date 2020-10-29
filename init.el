@@ -19,8 +19,8 @@
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 (message "Hello, %s sama, glad you are here again!\nDo your best :)" master)
 
-(when (version< emacs-version "24.4")
-  (error "Please upgrade me, %s sama, my version is: %s and it should be at least: 24.4" master emacs-version))
+(when (version< emacs-version "26.1")
+  (error "Please upgrade me, %s sama, my version is: %s and it should be at least: 26.1" master emacs-version))
 ;;=================================
 
 
