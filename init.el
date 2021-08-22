@@ -125,12 +125,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.org/packages/"))))
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   (quote
-    (doom-modeline dap-mode company csharp-mode js2-mode magit spinner flycheck-rust racer rust-mode lisp-mode elisp-slime-nav paredit counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck))))
+   '(doom-modeline dap-mode company csharp-mode js2-mode magit spinner flycheck-rust racer rust-mode lisp-mode elisp-slime-nav paredit counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
