@@ -183,7 +183,6 @@
 ;;=======================================
 (require 'LSP_conf)
 (require 'cAndCpp_conf)
-(require 'python_conf)
 (require 'rust_conf)
 (require 'js_conf)
 
