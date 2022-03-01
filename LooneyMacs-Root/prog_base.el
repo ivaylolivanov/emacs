@@ -86,8 +86,7 @@
 
   :config
   (setq projectile-completion-system 'ivy)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (projectile-mode +1))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
 ;;==============
 
 
