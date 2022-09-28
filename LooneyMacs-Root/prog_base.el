@@ -28,7 +28,6 @@
 ;; - Call configurations for programming utilities
 
 
-
 ;; - Automatic indent with <RET>
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; - Indent or complete with <TAB>
@@ -53,8 +52,6 @@
                                          try-complete-lisp-symbol))
 
 (global-set-key (kbd "M-/") #'hippie-expand)
-(global-set-key (kbd "s-/") #'hippie-expand)
-
 
 ;; - Align code in a pretty way
 (global-set-key (kbd "C-x \\") #'align-regexp)
