@@ -23,10 +23,11 @@
   :ensure t
   :init (setq lsp-auto-guess-root t)
   :hook ((c-mode . lsp)
-	 (c++-mode . lsp)
-	 (python-mode-hook . lsp)
-	 (js2-mode-hook . lsp)
-	 (csharp-mode . lsp-deferred))
+        (c++-mode . lsp)
+        (python-mode-hook . lsp)
+        (js2-mode-hook . lsp)
+        (csharp-mode . lsp-deferred)
+        (rust-mode . lsp))
   :config
   (setq lsp-idle-delay 0.500)
   (setq lsp-auto-guess-root t))
