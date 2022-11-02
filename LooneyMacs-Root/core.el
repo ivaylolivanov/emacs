@@ -146,10 +146,14 @@
 ;;============================
 ;;= Smoother mouse scrolling =
 ;;============================
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+(if (version< emacs-version "29.0.50")
+    (progn
+      (pixel-scroll-precision-mode)
+      (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+      (setq mouse-wheel-progressive-speed nil)
+      (setq mouse-wheel-follow-mouse 't)
+      (setq scroll-step 1))
+  (setq pixel-scroll-precision-mode 1))
 
 
 ;;==============================================
