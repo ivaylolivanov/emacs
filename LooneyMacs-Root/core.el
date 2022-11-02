@@ -23,6 +23,7 @@
 ;; - Save cursor position
 ;; - Newline at end of the files
 ;; - Windmove
+;; - Focus mode
 ;; - Volatile Highlight
 ;; - Ivy
 ;; - Swiper
@@ -348,6 +349,7 @@
 ;;= (something like main function) =
 ;;==================================
 (require 'prog_base)
+(require 'focus-mode)
 (require 'org_settings)
 ;;==================================
 
