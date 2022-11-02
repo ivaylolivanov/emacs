@@ -1,4 +1,4 @@
-;;; prog_base --- All the base stuff for programming
+;;; prog-base --- All the base stuff for programming
 
 ;;; Commentary:
 ;; - Main settings for programming
@@ -16,7 +16,6 @@
 ;; - Hippie expand instead dabbrev
 ;; - Align pretty
 ;; - GDB
-;; - Debug Adapter Protocol mode (DAP-mode)
 ;; - Projectile
 ;; - Magit
 ;; - Paren
@@ -60,18 +59,6 @@
 ;; - GDB to use many windows mode
 (setq gdb-many-windows t
       gdb-show-main t)
-
-
-
-;;==========================================
-;;= Debug Adapter Protocol mode (DAP-mode) =
-;;==========================================
-(use-package dap-mode
-  :ensure t
-
-  :config
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
-  (require 'dap-netcore))
 
 
 
@@ -180,12 +167,10 @@
 ;;= Call configurations for programming =
 ;;=              utilities              =
 ;;=======================================
-(require 'LSP_conf)
-(require 'cAndCpp_conf)
-(require 'rust_conf)
-(require 'js_conf)
+(require 'cpp-conf)
+(require 'rust-conf)
 
 ;;======================================
 
-(provide 'prog_base)
-;;; prog_base.el ends here
+(provide 'prog-base)
+;;; prog-base.el ends here

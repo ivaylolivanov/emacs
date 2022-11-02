@@ -1,4 +1,4 @@
-;;; org_settings --- Houses all org configurations
+;;; org-settings --- Houses all org configurations
 
 ;;; Commentary:
 ;;=============
@@ -36,5 +36,5 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(provide 'org_settings)
-;;; org_settings.el ends here
+(provide 'org-settings)
+;;; org-settings.el ends here

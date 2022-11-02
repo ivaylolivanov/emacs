@@ -352,9 +352,10 @@
 ;;=    Call the other settings     =
 ;;= (something like main function) =
 ;;==================================
-(require 'prog_base)
+(require 'prog-base)
 (require 'focus-mode)
-(require 'org_settings)
+(require 'org-settings)
 ;;==================================
 
 (provide 'core)
+;;; core.el ends here

@@ -50,11 +50,11 @@
 ;;====================================================
 
 (defvar conf-root-dir
-  (expand-file-name "LooneyMacs-Root" user-emacs-directory)
+  (expand-file-name "looneymacs-root" user-emacs-directory)
   "Contains settings and configurations.")
 
-(defvar programmingLayer-dir
-  (expand-file-name "ProgrammingLayer" conf-root-dir)
+(defvar programming-layer-dir
+  (expand-file-name "programming-layer" conf-root-dir)
   "Contains settings and configurations of programming utilities.")
 
 (defvar custom-packages-dir
@@ -65,8 +65,8 @@
 (unless (file-exists-p conf-root-dir)
   (make-directory conf-root-dir)
   (message "The root directory was created"))
-(unless (file-exists-p programmingLayer-dir)
-  (make-directory programmingLayer-dir)
+(unless (file-exists-p programming-layer-dir)
+  (make-directory programming-layer-dir)
   (message "The directory for programming languages was created"))
 (unless (file-exists-p custom-packages-dir)
   (make-directory custom-packages-dir)
@@ -114,7 +114,7 @@
 
 ;; - Include the directories in the load path
 (add-to-list 'load-path conf-root-dir)
-(add-to-list 'load-path programmingLayer-dir)
+(add-to-list 'load-path programming-layer-dir)
 (add-to-list 'load-path custom-packages-dir)
 ;;====================================================
 

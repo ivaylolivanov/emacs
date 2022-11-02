@@ -1,10 +1,13 @@
-;;; rust_conf --- This file houses the rust configurations
+;;; rust-conf --- This file houses the rust configurations
 
 ;;; Commentary:
 ;; - Enable code formatting on save
 ;; - Activate racer when rust mode starts
 
 ;;; Code:
+;;=======================
+;;= Rust Configurations =
+;;=======================
 
 
 
@@ -33,5 +36,5 @@
   ;; Activate racer when rust mode starts
   (add-hook 'racer-mode-hook #'company-mode))
 
-(provide 'rust_conf)
-;;; rust_conf.el ends here
+(provide 'rust-conf)
+;;; rust-conf.el ends here

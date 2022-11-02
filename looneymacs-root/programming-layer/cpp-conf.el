@@ -1,4 +1,4 @@
-;;; cAndCpp_conf --- Holds the configurations for C / C++
+;;; cpp-conf --- Holds the configurations for C / C++
 
 ;;; Commentary:
 ;; - C/C++ configurations and packages to make work
@@ -71,5 +71,5 @@
 
 ;;========================
 
-(provide 'cAndCpp_conf)
-;;; cAndCpp_conf.el ends here
+(provide 'cpp-conf)
+;;; cpp-conf.el ends here
