@@ -57,6 +57,10 @@
   (expand-file-name "ProgrammingLayer" conf-root-dir)
   "Contains settings and configurations of programming utilities.")
 
+(defvar custom-packages-dir
+  (expand-file-name "custom-packages" conf-root-dir)
+  "Contains custom packages.")
+
 ;; Create folder for the configurations
 (unless (file-exists-p conf-root-dir)
   (make-directory conf-root-dir)
@@ -64,6 +68,9 @@
 (unless (file-exists-p programmingLayer-dir)
   (make-directory programmingLayer-dir)
   (message "The directory for programming languages was created"))
+(unless (file-exists-p custom-packages-dir)
+  (make-directory custom-packages-dir)
+  (message "The directory for custom packages was created"))
 
 ;; Org agenda directory
 (defvar org-agenda-dir
@@ -108,6 +115,7 @@
 ;; - Include the directories in the load path
 (add-to-list 'load-path conf-root-dir)
 (add-to-list 'load-path programmingLayer-dir)
+(add-to-list 'load-path custom-packages-dir)
 ;;====================================================
 
 
