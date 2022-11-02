@@ -34,7 +34,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; - Show number of line in programming modes
-(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; - Use subword mode in programming modes
 (add-hook 'prog-mode-hook 'subword-mode)
