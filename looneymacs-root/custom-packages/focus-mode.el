@@ -2,6 +2,7 @@
 
 ;;; Commentary:
 ;; Excludes all distractions and focus on one's current task.  Clean frame.
+;; Heavily based on https://bzg.fr/en/emacs-strip-tease/#sec-6
 
 ;;; Code:
 (defvar-local previous-mode-line-state nil)
