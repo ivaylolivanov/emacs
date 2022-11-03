@@ -1,7 +1,7 @@
 ;;; focus-mode.el --- Focus on the window at hand
 
 ;;; Commentary:
-;; Exclude all distractions and focus on one's current task.
+;; Excludes all distractions and focus on one's current task.  Clean frame.
 
 ;;; Code:
 (defvar-local previous-mode-line-state nil)
