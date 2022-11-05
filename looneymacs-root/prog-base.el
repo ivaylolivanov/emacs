@@ -167,6 +167,7 @@
 ;;= Call configurations for programming =
 ;;=              utilities              =
 ;;=======================================
+(require 'eglot-conf)
 (require 'cpp-conf)
 (require 'cs-conf)
 (require 'rust-conf)
