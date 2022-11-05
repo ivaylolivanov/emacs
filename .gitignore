@@ -10,6 +10,7 @@ semanticdb
 projectile-bookmarks.eld
 .cache/
 .lsp-session-v1
+looneymacs-root/language-servers/
 elpa/
 elpy/
 tramp
