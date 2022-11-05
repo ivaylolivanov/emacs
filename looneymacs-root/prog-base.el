@@ -168,6 +168,7 @@
 ;;=              utilities              =
 ;;=======================================
 (require 'cpp-conf)
+(require 'cs-conf)
 (require 'rust-conf)
 
 ;;======================================
