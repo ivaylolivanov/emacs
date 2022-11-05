@@ -29,6 +29,8 @@
 
 (use-package racer
   :ensure t
+  :requires rust-mode
+  :init
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
