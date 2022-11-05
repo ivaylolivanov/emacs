@@ -125,14 +125,15 @@
 ;;===========
 (use-package company
   :ensure t
+  :hook
+  ('after-init-hook 'global-company-mode)
   :config
   (setq company-idle-delay 0.0)
   (setq company-show-quick-access t)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 1)
   (setq company-tooltip-align-annotations t)
-  (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
+  (setq company-tooltip-flip-when-above t))
 ;;===========
 
 
