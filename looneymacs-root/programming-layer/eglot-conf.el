@@ -4,24 +4,30 @@
 ;;========================
 ;;= Eglot configurations =
 ;;========================
+;; Heavily influenced by
+;; https://github.com/emacs-lsp/lsp-mode/blob/master/clients/lsp-csharp.el
+;;
+;; Content:
+;; - Constants
+;; - Language independent variables
 ;; - Setup omnisharp-roslyn
-;;     - Constants
-;;     - Customizable variables
-;;     - Add language servers to exec-path
-;;     - Omnisharp-roslyn functions
+;;     - C# Customizable variables
+;;     - Omnisharp-roslyn related functions
+;; - Setup rust-analyzer
+;;     - Rust Customizable variables
+;;     - Rust analyzer related functions
 ;; - Eglot mode configurations
+;; - Utilities
+;;     - Gunzip utils
+;;     - Unzip utils
 
 
 
 ;;; Code:
-;;==========================
-;;= Setup omnisharp-roslyn =
-;;==========================
-;; Heavily influenced by
-;; https://github.com/emacs-lsp/lsp-mode/blob/master/clients/lsp-csharp.el
-
 (require 'gnutls)
 (require 'f)
+
+
 
 ;; - Constants
 (defconst powershell-unzip-script "powershell -noprofile -noninteractive \
@@ -32,9 +38,10 @@
   "bash -c 'mkdir -p %2$s && unzip -qq -o %1$s -d %2$s'"
   "Unzip script to unzip file.")
 
-;; - Customizable variables
 (defconst gunzip-script "gzip -d %1$s"
   "Script to decompress a gzippped file with gzip.")
+
+;; - Language independent variables
 (defcustom language-servers-dir
   (expand-file-name (f-join (f-join conf-root-dir "language-servers")))
   "Directory in which the servers will be installed."
@@ -42,6 +49,12 @@
   :type 'directory
   :group 'eglot)
 
+
+
+;;==========================
+;;= Setup omnisharp-roslyn =
+;;==========================
+;; - C# Customizable variables
 (defcustom omnisharp-roslyn-unpack-dir
   (f-join language-servers-dir "omnisharp-roslyn")
   "The path where omnisharp-roslyn .zip archive will be extracted."
@@ -88,12 +101,7 @@
 
 
 
-;; - Add language servers to exec-path
-;; (add-to-list 'exec-path language-servers-dir)
-
-
-
-;; - Omnisharp-roslyn functions
+;; - Omnisharp-roslyn related functions
 (defun omnisharp-roslyn-download ()
   "Download omnisharp-roslyn archive, unzip it and set as executable."
   (url-copy-file omnisharp-roslyn-url
@@ -107,7 +115,6 @@
 
 (defun get-csharp-language-server-path ()
   "Resolve path to use to start the csharp language server."
-  (interactive)
   (if language-server-csharp-path
       (executable-find language-server-csharp-path)
     (let ((server-dir omnisharp-roslyn-unpack-dir))
@@ -122,6 +129,10 @@
   (unless (file-exists-p omnisharp-roslyn-unpack-dir)
     (make-directory omnisharp-roslyn-unpack-dir))
   (omnisharp-roslyn-download))
+
+;;========================
+
+
 
 ;;=======================
 ;;= Setup rust-analyzer =
@@ -185,7 +196,11 @@
 
 ;;=======================
 
-;; - Eglot package
+
+
+;;=============================
+;;= Eglot mode configurations =
+;;=============================
 (use-package eglot
   :ensure t
   :init
@@ -242,7 +257,8 @@ in place."
   (unless unzip-script
     (error "Unable to find `unzip' or `powershell' on the path, please customize `unzip-script'"))
   (shell-command (format (funcall unzip-script) zip-file dest)))
-;;========================
+
+;;=============
 
 (provide 'eglot-conf)
 ;;; eglot-conf.el ends here
