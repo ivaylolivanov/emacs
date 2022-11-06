@@ -33,6 +33,8 @@
   "Unzip script to unzip file.")
 
 ;; - Customizable variables
+(defconst gunzip-script "gzip -d %1$s"
+  "Script to decompress a gzippped file with gzip.")
 (defcustom language-servers-dir
   (expand-file-name (f-join (f-join conf-root-dir "language-servers")))
   "Directory in which the servers will be installed."
@@ -121,11 +123,73 @@
     (make-directory omnisharp-roslyn-unpack-dir))
   (omnisharp-roslyn-download))
 
+;;=======================
+;;= Setup rust-analyzer =
+;;=======================
+;; - Rust customizable variables
+(defcustom rust-analyzer-unpack-dir
+  (f-join language-servers-dir "rust-analyzer")
+  "The path where rust-analyzer archive will be extracted."
+  :group 'eglot-rust
+  :type 'file)
 
+(defcustom rust-analyzer-archive-store-path
+  (f-join rust-analyzer-unpack-dir "rust-analyzer.gz")
+  "The path where rust-analyzer archive will be stored."
+  :group 'eglot-rust
+  :type 'file)
+
+(defcustom rust-analyzer-url
+  (format "https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/%s"
+          (pcase system-type
+            ('gnu/linux "rust-analyzer-x86_64-unknown-linux-gnu.gz")
+            ('darwin (if (string-match "^aarch64-.*" system-configuration)
+                         "rust-analyzer-aarch64-apple-darwin.gz"
+                       "rust-analyzer-x86_64-apple-darwin.gz"))
+            ('windows-nt "rust-analyzer-x86_64-pc-windows-msvc.gz")))
+  "Automatic download url for Rust Analyzer"
+  :type 'string
+  :group 'eglot-rust)
+
+(defcustom language-server-rust-path
+  nil
+  "The path to the Rust Analyzer language-server binary."
+  :group 'eglot-rust
+  :type '(string :tag "Single string value or nil"))
+
+
+
+;; - Rust analyzer related functions
+(defun rust-analyzer-download ()
+  "Download rust-analyzer archive, unzip it and set it as executable."
+  (when (not (f-exists? rust-analyzer-unpack-dir))
+    (mkdir rust-analyzer-unpack-dir))
+  (url-copy-file rust-analyzer-url
+                 rust-analyzer-archive-store-path 1)
+  (gunzip rust-analyzer-archive-store-path)
+  (let ((rust-analyzer-executable
+         (f-join rust-analyzer-unpack-dir "rust-analyzer")))
+    (set-file-modes rust-analyzer-executable #o755)))
+
+(defun setup-rust-analyzer ()
+  "Resolve the path to rust-analyzer and add it to `exec-path`."
+  (if language-server-rust-path
+      (executable-find language-server-rust-path)
+    (let ((server-dir rust-analyzer-unpack-dir))
+        (if (f-exists? server-dir)
+            (f-join server-dir "rust-analyzer")
+          (progn
+            (rust-analyzer-download)
+            (setup-rust-analyzer)))
+        (add-to-list 'exec-path server-dir))))
+
+;;=======================
 
 ;; - Eglot package
 (use-package eglot
   :ensure t
+  :init
+  (setup-rust-analyzer)
   :hook
   (csharp-mode . eglot-ensure)
   (c-mode      . eglot-ensure)
@@ -136,6 +200,30 @@
   :config
   (add-to-list 'eglot-server-programs
                `(csharp-mode . ,(list (get-csharp-language-server-path) "-lsp"))))
+
+;; ============================
+
+
+
+;;=============
+;;= Utilities =
+;;=============
+;; - Gunzip utils
+(defcustom gunzip-script-command
+  (lambda ()
+    (cond ((executable-find "gzip") gunzip-script)
+          (t nil)))
+  "The script to decompress a gzipped file.
+Should be a format string with one argument for the file to be decompressed
+in place."
+  :group 'eglot-utils
+  :type 'string)
+
+(defun gunzip (gz-file)
+  "Decompress GZ-FILE in place."
+  (unless gunzip-script-command
+    (error "Unable to find `gzip' on the path, please either customize `gunzip-script-command' or manually decompress %s" gz-file))
+  (shell-command (format (funcall gunzip-script-command) gz-file)))
 
 
 
