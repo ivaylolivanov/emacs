@@ -158,6 +158,7 @@
 (use-package flycheck
   :ensure t
   :config
+  (setq-default flycheck-indication-mode 'nil)
   (add-hook 'after-init-hook #'global-flycheck-mode))
 ;;============
 
