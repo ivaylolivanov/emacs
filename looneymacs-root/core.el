@@ -148,7 +148,7 @@
 ;;============================
 (if (version< emacs-version "29.0.50")
     (progn
-      (pixel-scroll-precision-mode)
+      (pixel-scroll-mode)
       (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
       (setq mouse-wheel-progressive-speed nil)
       (setq mouse-wheel-follow-mouse 't)
