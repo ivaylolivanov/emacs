@@ -24,6 +24,7 @@
 ;; - Company
 ;; - Flyspell
 ;; - Flycheck
+;; - Import build-project.el
 ;; - Call configurations for programming utilities
 
 
@@ -162,6 +163,12 @@
   (add-hook 'after-init-hook #'global-flycheck-mode))
 ;;============
 
+
+
+;;===========================
+;;= Import build-project.el =
+;;===========================
+(require 'build-project)
 
 
 ;;=======================================
