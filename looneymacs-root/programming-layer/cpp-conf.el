@@ -39,9 +39,8 @@
     (when (looking-at "{")
       '+)))
 
-(c-add-style "linux-custom"
-	     '("linux"
-	       (c-basic-offset . 4)
+(c-add-style "custom-c-style"
+	     '((c-basic-offset . 4)
 	       (c-offsets-alist . ((inline-open . +)
 				   (brace-list-open . +)
 				   (statement-case-open . +)
@@ -52,14 +51,14 @@
 				    (my-c-lineup-arglist-lambda c-lineup-arglist))))))
 
 (defun my-c-mode-hook()
-  (c-set-style "linux-custom")
+  (c-set-style "custom-c-style")
   (auto-fill-mode)
   (my-indent-setup))
 
 
 ;; ;; - Set C++ style
 (defun my-c++-mode-hook ()
-  (c-set-style "linux-custom")
+  (c-set-style "custom-c-style")
   (auto-fill-mode)
   (my-indent-setup))
 
