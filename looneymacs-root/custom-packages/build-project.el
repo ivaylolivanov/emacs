@@ -67,27 +67,28 @@
   (when (string-empty-p project-build-script)
     (error (format "ERORR: Have not found a suitable build script!")))
 
-  (when (eq system-type 'windows-nt)
-    (let ((build-status
-           (process-lines
-            "powershell"
-            "-ExecutionPolicy"
-            "Unrestricted"
-            "-File"
-            project-build-script)))
-      (with-current-buffer build-status-buffer
-        (erase-buffer)
-        (insert (string-join build-status "\n"))
-        (split-window-horizontally))
-      (switch-to-buffer-other-window build-status-buffer)))
+  (setq build-status "")
+  (cond ((eq system-type 'windows-nt)
+         (setq build-status (process-lines
+                             "powershell"
+                             "-ExecutionPolicy"
+                             "Unrestricted"
+                             "-File"
+                             project-build-script)))
+        ((eq system-type 'gnu/linux)
+         (setq build-status (shell-command-to-string project-build-script))))
 
-  (when (eq system-type 'gnu/linux)
-    (let ((build-status (shell-command-to-string project-build-script)))
-      (with-current-buffer build-status-buffer
-        (erase-buffer)
-        (insert build-status)
-        (split-window-horizontally))
-      (switch-to-buffer-other-window build-status-buffer))))
+  (with-current-buffer build-status-buffer
+    (erase-buffer)
+    (insert (string-join build-status "\n")))
+
+  (let ((build-status-buffer-window
+         (get-buffer-window build-status-buffer)))
+    (if (one-window-p)
+        (split-window-horizontally)
+      (other-window 0))
+    (unless build-status-buffer-window
+      (display-buffer build-status-buffer 'reusable-frames t))))
 
 (global-set-key (kbd "<f9>") 'looney-build-current-project)
 
