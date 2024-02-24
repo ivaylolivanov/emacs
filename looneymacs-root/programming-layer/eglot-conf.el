@@ -24,10 +24,6 @@
 
 
 ;;; Code:
-(require 'f)
-
-
-
 ;; - Constants
 (defconst powershell-unzip-script "powershell -noprofile -noninteractive \
 -nologo -ex bypass Expand-Archive -path '%s' -dest '%s'"
@@ -42,7 +38,7 @@
 
 ;; - Language independent variables
 (defcustom language-servers-dir
-  (expand-file-name (f-join (f-join conf-root-dir "language-servers")))
+  (expand-file-name (concat (file-name-as-directory conf-root-dir) "language-servers"))
   "Directory in which the servers will be installed."
   :risky t
   :type 'directory
@@ -55,13 +51,13 @@
 ;;==========================
 ;; - C# Customizable variables
 (defcustom omnisharp-roslyn-unpack-dir
-  (f-join language-servers-dir "omnisharp-roslyn")
+  (expand-file-name "omnisharp-roslyn" language-servers-dir)
   "The path where omnisharp-roslyn .zip archive will be extracted."
   :group 'eglot-omnisharp
   :type 'file)
 
 (defcustom omnisharp-roslyn-zip-store-path
-  (f-join omnisharp-roslyn-unpack-dir "omnisharp-roslyn.zip")
+  (expand-file-name "omnisharp-roslyn.zip" omnisharp-roslyn-unpack-dir)
   "The path where omnisharp-roslyn .zip archive will be stored."
   :group 'eglot-omnisharp
   :type 'file)
@@ -109,7 +105,7 @@
          omnisharp-roslyn-unpack-dir)
   (unless (eq system-type 'windows-nt)
     (let ((omnisharp-executable
-           (f-join omnisharp-roslyn-unpack-dir "OmniSharp")))
+           (expand-file-name "OmniSharp" omnisharp-roslyn-unpack-dir)))
       (set-file-modes omnisharp-executable #o755))))
 
 (defun get-csharp-language-server-path ()
@@ -117,10 +113,12 @@
   (if language-server-csharp-path
       (executable-find language-server-csharp-path)
     (let ((server-dir omnisharp-roslyn-unpack-dir))
-        (when (f-exists? server-dir)
-          (f-join server-dir
-                  (cond ((eq system-type 'windows-nt) "OmniSharp.exe")
-                        (t "OmniSharp")))))))
+        (when (file-exists-p server-dir)
+          (expand-file-name
+           (concat (file-name-as-directory server-dir)
+                   (cond ((eq system-type 'windows-nt) "OmniSharp.exe")
+                         (t "OmniSharp")))
+           server-dir)))))
 
 (defun eglot-setup-omnisharp ()
   "Function to download, setup and make omnisharp-roslyn ready for use."
@@ -138,13 +136,13 @@
 ;;=======================
 ;; - Rust customizable variables
 (defcustom rust-analyzer-unpack-dir
-  (f-join language-servers-dir "rust-analyzer")
+  (expand-file-name "rust-analyzer" language-servers-dir)
   "The path where rust-analyzer archive will be extracted."
   :group 'eglot-rust
   :type 'file)
 
 (defcustom rust-analyzer-archive-store-path
-  (f-join rust-analyzer-unpack-dir "rust-analyzer.gz")
+  (expand-file-name "rust-analyzer.gz" rust-analyzer-unpack-dir)
   "The path where rust-analyzer archive will be stored."
   :group 'eglot-rust
   :type 'file)
@@ -172,13 +170,13 @@
 ;; - Rust analyzer related functions
 (defun rust-analyzer-download ()
   "Download rust-analyzer archive, unzip it and set it as executable."
-  (when (not (f-exists? rust-analyzer-unpack-dir))
+  (when (not (file-exists-p rust-analyzer-unpack-dir))
     (mkdir rust-analyzer-unpack-dir))
   (url-copy-file rust-analyzer-url
                  rust-analyzer-archive-store-path 1)
   (gunzip rust-analyzer-archive-store-path)
   (let ((rust-analyzer-executable
-         (f-join rust-analyzer-unpack-dir "rust-analyzer")))
+         (expand-file-name "rust-analyzer" rust-analyzer-unpack-dir)))
     (set-file-modes rust-analyzer-executable #o755)))
 
 (defun setup-rust-analyzer ()
@@ -186,12 +184,12 @@
   (if language-server-rust-path
       (executable-find language-server-rust-path)
     (let ((server-dir rust-analyzer-unpack-dir))
-        (if (f-exists? server-dir)
-            (f-join server-dir "rust-analyzer")
-          (progn
-            (rust-analyzer-download)
-            (setup-rust-analyzer)))
-        (add-to-list 'exec-path server-dir))))
+      (if (file-exists-p server-dir)
+          (expand-file-name "rust-analyzer" server-dir)
+        (progn
+          (rust-analyzer-download)
+          (setup-rust-analyzer)))
+      (add-to-list 'exec-path server-dir))))
 
 ;;=======================
 
