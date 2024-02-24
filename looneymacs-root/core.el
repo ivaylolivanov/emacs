@@ -8,9 +8,6 @@
 ;; - Install Use-package
 ;; - Set UTF-8 as default encoding
 ;; - Discard useless UI things
-;;     - Set theme
-;;     - Enable winner-mode
-;;     - Dashboard
 ;; - Smooth mouse scrolling
 ;; - Dired, Recentf, Ediff and Eldoc
 ;; - Go-to-address mode
@@ -23,7 +20,6 @@
 ;; - Save cursor position
 ;; - Newline at end of the files
 ;; - Windmove
-;; - Focus mode
 ;; - Volatile Highlight
 ;; - Ivy
 ;; - Swiper
@@ -74,55 +70,35 @@
 (setq-default truncate-lines t)
 ;; - Remove splash screen
 (setq inhibit-startup-message t)
-
 ;; - Disable blinking cursor
 (blink-cursor-mode -1)
-
-;; - Turn off interfaces
+;; - Remove bells
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
+;; - Set theme
+(use-package spacemacs-theme
+  :defer t
+  :init
+  (load-theme 'spacemacs-dark t))
+;; - Beautify UI
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (setq scroll-margin 0
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
-
-;; - Remove bells
-(setq visible-bell nil)
-(setq ring-bell-function 'ignore)
-
-;; - Mode line settings
-(line-number-mode t)
-(column-number-mode t)
-(size-indication-mode t)
-(display-time-mode 1)
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 10)))
-
+(setq-default mode-line-format nil)
+(set-face-attribute 'default nil :font "Inconsolata" :height 170)
+(set-fringe-mode (/ (- (display-pixel-width) (* 100 (frame-char-width))) 2))
+(set-window-fringes nil 0 0)
 ;; - Short answers only (y / n)
 (fset 'yes-or-no-p 'y-or-n-p)
-
-
 ;; - Confirmation for quitting emacs with y/n
 (setq confirm-kill-emacs 'y-or-n-p
       confirm-nonexistent-file-or-buffer nil)
-
-
-;; - Set font
-(set-face-attribute 'default nil :font "Inconsolata" :height 170)
-
-
-;; - Set theme
-(use-package spacemacs-theme
-  :defer t
-  :init
-  (load-theme 'spacemacs-dark t))
-
 ;; - Enable winner mode
 (when (fboundp 'winner-mode)
       (winner-mode 1))
-
 ;; - Dashboard
 (use-package dashboard
   :ensure t
@@ -132,12 +108,10 @@
   (if (file-exists-p dashboard-custom-banner-path)
       (setq dashboard-startup-banner dashboard-custom-banner-path)
     (setq dashboard-startup-banner 'logo))
-
   (setq dashboard-items '((projects . 5)
 			  (agenda . 5)
 			  (recents  . 5)
                           (bookmarks . 5)))
-
   (dashboard-setup-startup-hook))
 ;;==============================
 
@@ -154,6 +128,8 @@
       (setq mouse-wheel-follow-mouse 't)
       (setq scroll-step 1))
   (setq pixel-scroll-precision-mode 1))
+;;============================
+
 
 
 ;;==============================================
@@ -255,6 +231,7 @@
 
 ;; - Highlight current line
 (global-hl-line-mode +1)
+
 ;; - Highlight trailing whitespaces
 (add-hook 'prog-mode-hook
 	  (lambda () (interactive)
@@ -353,7 +330,6 @@
 ;;= (something like main function) =
 ;;==================================
 (require 'prog-base)
-(require 'focus-mode)
 (require 'org-settings)
 ;;==================================
 
