@@ -11,7 +11,6 @@
 ;;=        settings         =
 ;;===========================
 ;; - Automatic indent with <RET>; Indent / complete with <TAB>
-;; - Show number of line in programming modes
 ;; - Use subword mode in programming modes
 ;; - Hippie expand instead dabbrev
 ;; - Align pretty
@@ -32,9 +31,6 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; - Indent or complete with <TAB>
 (setq-default indent-tabs-mode nil)
-
-;; - Show number of line in programming modes
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; - Use subword mode in programming modes
 (add-hook 'prog-mode-hook 'subword-mode)
