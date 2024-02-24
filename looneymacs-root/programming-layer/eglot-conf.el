@@ -24,7 +24,6 @@
 
 
 ;;; Code:
-(require 'gnutls)
 (require 'f)
 
 

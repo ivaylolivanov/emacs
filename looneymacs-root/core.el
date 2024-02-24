@@ -30,6 +30,7 @@
 ;;====================
 ;;= Initialize melpa =
 ;;====================
+(require 'gnutls)
 (require 'melpa)
 ;;====================
 
