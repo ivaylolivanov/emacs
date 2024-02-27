@@ -90,8 +90,7 @@
 	  "/Pictures/dashboard_banner.png")
   "The variable holds the path to my default banner logo.")
 
-;; - Write backups in its onw directory
-;; And configure backups
+;; - Write backups in its own directory and configure backups
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
 		 (concat user-emacs-directory "Backup")))))
