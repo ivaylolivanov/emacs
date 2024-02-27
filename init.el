@@ -84,6 +84,13 @@
   "Directory for quick notes.")
 (make-directory org-notes-dir :parents)
 
+;; Org-roam directory
+(defvar org-roam-storage-dir
+  (expand-file-name "Documents/org-roam"
+                    (getenv "HOME"))
+  "Directory for org-roam storage.")
+(make-directory org-roam-storage-dir :parents)
+
 ;; Dashboard banner location
 (defvar dashboard-custom-banner-path
   (concat (getenv "HOME")
