@@ -76,7 +76,7 @@
                              "-File"
                              project-build-script)))
         ((eq system-type 'gnu/linux)
-         (setq build-status (shell-command-to-string project-build-script))))
+         (setq build-status (process-lines project-build-script))))
 
   (with-current-buffer build-status-buffer
     (erase-buffer)
