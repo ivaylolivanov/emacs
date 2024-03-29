@@ -84,9 +84,6 @@
 
   (let ((build-status-buffer-window
          (get-buffer-window build-status-buffer)))
-    (if (one-window-p)
-        (split-window-horizontally)
-      (other-window 0))
     (unless build-status-buffer-window
       (display-buffer build-status-buffer 'reusable-frames t))))
 
