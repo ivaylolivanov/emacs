@@ -80,12 +80,7 @@
 
   (with-current-buffer build-status-buffer
     (erase-buffer)
-    (insert (string-join build-status "\n")))
-
-  (let ((build-status-buffer-window
-         (get-buffer-window build-status-buffer)))
-    (unless build-status-buffer-window
-      (display-buffer build-status-buffer 'reusable-frames t))))
+    (insert (string-join build-status "\n"))))
 
 (global-set-key (kbd "<f9>") 'looney-build-current-project)
 
