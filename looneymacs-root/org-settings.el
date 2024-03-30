@@ -29,9 +29,6 @@
   (setq org-startup-indented t) ; Enable 'org-indent-mode' by default
   (add-hook 'org-mode-hook #'visual-line-mode))
 
-;; - Configure org capture mode
-(setq org-default-notes-file (concat org-notes-dir "/quick_notes.org"))
-
 ;; - Org roam mode
 (use-package org-roam
   :ensure t

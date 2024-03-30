@@ -72,18 +72,6 @@
   (make-directory custom-packages-dir)
   (message "The directory for custom packages was created"))
 
-;; Org agenda directory
-(defvar org-agenda-dir
-  (concat (getenv "HOME") "/Documents/org_agenda/")
-  "Directory for org agenda.")
-(make-directory org-agenda-dir :parents)
-
-;; Org notes directory
-(defvar org-notes-dir
-  (concat (getenv "HOME") "/Documents/notes/")
-  "Directory for quick notes.")
-(make-directory org-notes-dir :parents)
-
 ;; Org-roam directory
 (defvar org-roam-storage-dir
   (expand-file-name "Documents/org-roam"
