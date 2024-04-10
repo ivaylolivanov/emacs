@@ -17,10 +17,10 @@
 ;;     - Rust Customizable variables
 ;;     - Rust analyzer related functions
 ;; - Eglot mode configurations
+;; - Eglot keybinds
 ;; - Utilities
 ;;     - Gunzip utils
 ;;     - Unzip utils
-
 
 
 ;;; Code:
@@ -215,6 +215,12 @@
 
 ;; ============================
 
+
+
+;; ==================
+;; = Eglot keybinds =
+;; ==================
+(global-set-key (kbd "C-x r") 'eglot-rename)
 
 
 ;;=============
