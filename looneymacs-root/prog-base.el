@@ -178,6 +178,7 @@
 ;;= Import build-project.el =
 ;;===========================
 (require 'build-project)
+(require 'name-convention-cycle)
 
 
 ;;=======================================
