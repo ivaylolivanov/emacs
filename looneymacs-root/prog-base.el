@@ -19,6 +19,7 @@
 ;; - Magit
 ;; - Paren
 ;; - Rainbow-delimiters
+;; - Whitespace mode
 ;; - Yasnippet
 ;; - Company
 ;; - Flyspell
@@ -103,6 +104,17 @@
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 ;;=======================
+
+
+;; ===================
+;; = Whitespace mode =
+;; ===================
+(require 'whitespace)
+(setq whitespace-line-column 80)
+(setq whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
+;; ===================
 
 
 
