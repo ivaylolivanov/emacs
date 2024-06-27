@@ -90,7 +90,7 @@
       scroll-preserve-screen-position 1)
 (setq-default mode-line-format nil)
 (set-face-attribute 'default nil :font "Inconsolata" :height 170)
-(set-fringe-mode (/ (- (display-pixel-width) (* 120 (frame-char-width))) 2))
+(set-fringe-mode (/ (- (frame-pixel-width) (* 120 (frame-char-width))) 2))
 (set-window-fringes nil 0 0)
 ;; - Short answers only (y / n)
 (fset 'yes-or-no-p 'y-or-n-p)
