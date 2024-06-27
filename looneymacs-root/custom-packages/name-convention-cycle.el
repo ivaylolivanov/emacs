@@ -108,7 +108,7 @@
        (cdr (bounds-of-thing-at-point 'sexp)))
       (insert new-variable-name))))
 
-(global-set-key (kbd "C-c r") 'cycle-naming-convention-at-point)
+(global-set-key (kbd "C-c s") 'cycle-naming-convention-at-point)
 
 (provide 'name-convention-cycle)
 ;;; name-convention-cycle.el ends here
