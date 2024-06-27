@@ -221,7 +221,7 @@
 ;; ==================
 ;; = Eglot keybinds =
 ;; ==================
-(global-set-key (kbd "C-x r") 'eglot-rename)
+(global-set-key (kbd "C-c r") 'eglot-rename)
 
 
 ;;=============
