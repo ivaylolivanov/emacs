@@ -38,20 +38,38 @@
   :custom
   (org-roam-directory (file-truename org-roam-storage-dir))
   (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+   `(("d" "default" plain
+      "%?"
+      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)
+     ("g" "game design document" plain
+      (file ,(file-name-concat org-roam-storage-dir
+                               "/templates/game-design-document.org"))
+      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)))
+  (org-roam-dailies-capture-templates
+   '(("d" "default" entry "* %<%I:%M %p>: %?"
+      :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   :bind (("C-c n f" . org-roam-node-find)
          (:map org-mode-map
                (("C-c n i" . org-roam-node-insert)
                 ("C-c n o" . org-id-get-create)
                 ("C-c n t" . org-roam-tag-add)
                 ("C-c n a" . org-roam-alias-add)
-                ("C-c n l" . org-roam-buffer-toggle))))
+                ("C-c n l" . org-roam-buffer-toggle)))
+         (:map org-roam-dailies-map
+               ("Y" . org-roam-dailies-capture-yesterday)
+               ("T" . org-roam-dailies-capture-tomorrow)))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
   :config
   (org-roam-setup))
 
 ;; - Keybindings
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c c") 'org-roam-capture)
 
 (provide 'org-settings)
 ;;; org-settings.el ends here
