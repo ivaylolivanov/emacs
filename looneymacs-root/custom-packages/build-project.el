@@ -54,12 +54,7 @@
 (defun looney-build-current-project ()
   "Try to execute the build script for the current project."
   (interactive)
-  (setq build-status-buffer-name "*Build-Status*")
   (setq project-root (looney-get-git-root))
-  (setq build-status-buffer
-        (if (get-buffer build-status-buffer-name)
-            (get-buffer build-status-buffer-name)
-          (generate-new-buffer build-status-buffer-name)))
   (when (string-empty-p project-root)
     (error (format "ERORR: Not project root found!")))
 
@@ -67,20 +62,20 @@
   (when (string-empty-p project-build-script)
     (error (format "ERORR: Have not found a suitable build script!")))
 
-  (setq build-status "")
-  (cond ((eq system-type 'windows-nt)
-         (setq build-status (process-lines
-                             "powershell"
-                             "-ExecutionPolicy"
-                             "Unrestricted"
-                             "-File"
-                             project-build-script)))
-        ((eq system-type 'gnu/linux)
-         (setq build-status (process-lines project-build-script))))
+  (setq compile-options-windows
+        `(,(executable-find "powershell")
+          "-NoProfile"
+          "-NoLogo"
+          "-NonInteractive"
+          "-ExecutionPolicy Bypass"
+          "-File"
+          ,project-build-script))
 
-  (with-current-buffer build-status-buffer
-    (erase-buffer)
-    (insert (string-join build-status "\n"))))
+  ;; TODO: Test on GNU / Linux! Verified ONLY on Windows 11!
+  (cond ((eq system-type 'windows-nt)
+         (compile (mapconcat 'identity compile-options-windows " ")))
+        ((eq system-type 'gnu/linux)
+         (compile project-build-script))))
 
 (global-set-key (kbd "<f9>") 'looney-build-current-project)
 
