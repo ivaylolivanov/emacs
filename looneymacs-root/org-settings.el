@@ -67,6 +67,7 @@
   :bind-keymap
   ("C-c n d" . org-roam-dailies-map)
   :config
+  (require 'org-roam-dailies)
   (org-roam-setup))
 
 ;; - Keybindings
