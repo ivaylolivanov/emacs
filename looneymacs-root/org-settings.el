@@ -10,6 +10,7 @@
 ;; - Enable visual-line-mode within org-mode
 ;; - Configure org capture
 ;; - Org roam mode
+;; - Publishing org-roam notes
 ;; - Keybindings
 
 
@@ -69,6 +70,36 @@
   :config
   (require 'org-roam-dailies)
   (org-roam-setup))
+
+;; - Publishing org-roam notes
+(setq org-html-validation-link nil
+      org-html-head-include-scripts nil
+      org-html-head-include-default-style nil)
+(setq org-publish-project-alist
+      (list
+       (list "roam-notes:main"
+             :recursive t
+             :base-directory org-roam-storage-dir
+             :publishing-function 'org-html-publish-to-html
+             :publishing-directory (file-name-concat org-roam-storage-dir  "publish")
+             :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"./style/style.css\" />"
+             :exclude ".*\\(templates\\|personal\\).*"
+             :with-author nil
+             :with-creator nil
+             :with-toc nil           ;; Do not include a table of contents
+             :auto-sitemap t
+             :sitemap-filename "index.org"
+             :sitemap-title "Ivaylo's public learning"
+             :section-numbers nil
+             :time-stamp-file nil)
+       (list "roam-notes:static"
+             :base-directory org-roam-storage-dir
+             :publishing-directory (file-name-concat org-roam-storage-dir "publish")
+             :recursive t
+             :base-extension "css\\|png\\|jpg\\|gif"
+             :publishing-function 'org-publish-attachment
+             :exclude ".*\\(templates\\|personal\\).*"
+             )))
 
 ;; - Keybindings
 (global-set-key (kbd "C-c l") 'org-store-link)
