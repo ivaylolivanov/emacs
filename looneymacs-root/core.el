@@ -106,6 +106,7 @@
   :diminish dashboard-mode
   :config
   (setq dashboard-banner-logo-title "Welcome, Make your day worth it!")
+  (setq dashboard-projects-backend 'projectile)
   (if (file-exists-p dashboard-custom-banner-path)
       (setq dashboard-startup-banner dashboard-custom-banner-path)
     (setq dashboard-startup-banner 'logo))
