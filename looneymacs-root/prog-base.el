@@ -25,6 +25,7 @@
 ;; - Flyspell
 ;; - Flycheck
 ;; - Import build-project.el
+;; - Programming mode tags
 ;; - Call configurations for programming utilities
 
 
@@ -171,6 +172,33 @@
   (setq-default flycheck-indication-mode 'nil)
   (add-hook 'after-init-hook #'global-flycheck-mode))
 ;;============
+
+
+
+;; =========================
+;; = Programming mode tags =
+;; =========================
+(make-face 'font-lock-todo-face)
+(make-face 'font-lock-done-face)
+(make-face 'font-lock-warn-face)
+(make-face 'font-lock-note-face)
+(modify-face 'font-lock-todo-face "Dark Orange" nil nil t t t nil nil)
+(modify-face 'font-lock-done-face "Dark Green"  nil nil t t t nil nil)
+(modify-face 'font-lock-note-face "Dark Gray"   nil nil t t t nil nil)
+(modify-face 'font-lock-warn-face "Salmon"      nil nil t t t nil nil)
+
+
+(defun highlight-tags()
+  "Highlight the specified comment tags."
+  (font-lock-add-keywords
+   nil
+   '(("\\<\\(TODO\\)" 1 'font-lock-todo-face t)
+     ("\\<\\(DONE\\)" 1 'font-lock-done-face t)
+     ("\\<\\(NOTE\\)" 1 'font-lock-note-face t)
+     ("\\<\\(WARN\\)" 1 'font-lock-warn-face t))))
+
+(add-hook 'prog-mode-hook 'highlight-tags)
+;; =========================
 
 
 
