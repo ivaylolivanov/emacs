@@ -107,13 +107,19 @@
   :config
   (setq dashboard-banner-logo-title "Welcome, Make your day worth it!")
   (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-center-content t)
+  (setq dashboard-vertically-center-content t)
   (if (file-exists-p dashboard-custom-banner-path)
       (setq dashboard-startup-banner dashboard-custom-banner-path)
     (setq dashboard-startup-banner 'logo))
   (setq dashboard-items '((projects . 5)
-			  (agenda . 5)
-			  (recents  . 5)
-                          (bookmarks . 5)))
+			  (recents  . 5)))
+  (setq dashboard-startupify-list
+        '(dashboard-insert-banner
+          dashboard-insert-newline
+          dashboard-insert-banner-title
+          dashboard-insert-items
+          dashboard-insert-init-info))
   (dashboard-setup-startup-hook))
 ;;==============================
 
