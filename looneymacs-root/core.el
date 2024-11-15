@@ -316,7 +316,6 @@
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
 (global-set-key (kbd "<f1>") 'eval-region)
-(global-set-key (kbd "M-p f") 'projectile-find-file)
 
 
 
