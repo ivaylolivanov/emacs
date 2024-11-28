@@ -47,7 +47,7 @@
      ("g" "game design document" plain
       (file ,(file-name-concat org-roam-storage-dir
                                "/templates/game-design-document.org"))
-      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :target (file+head "game-designs/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)
      ("p" "personal" plain ""
       :target (file+head "personal/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
