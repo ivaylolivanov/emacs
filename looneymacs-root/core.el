@@ -54,6 +54,7 @@
 ;;= - Set UTF-8 as default encoding =
 ;;===================================
 (set-charset-priority 'unicode)
+(setq system-time-locale "C")
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system  'utf-8)
 (set-keyboard-coding-system  'utf-8)
