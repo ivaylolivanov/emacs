@@ -10,6 +10,7 @@
 ;; - Enable visual-line-mode within org-mode
 ;; - Configure org capture
 ;; - Org roam mode
+;; - Org Roam Quick Capture
 ;; - Publishing org-roam notes
 ;; - Keybindings
 
@@ -70,6 +71,18 @@
   :config
   (require 'org-roam-dailies)
   (org-roam-setup))
+
+;; - Org Roam Quick Capture
+(defun org-roam-quick-capture ()
+  "This function populates file with quick capture notes."
+  (interactive)
+  (org-roam-capture-
+   :node (org-roam-node-create)
+   :templates
+   '(("q" "quick-capture" plain "* %<%H:%M:%S-%d-%m-%Y>\n%?"
+      :if-new (file+head "quick-capture.org"
+                         "#+title: Quick capture\n#+filetags: :Personal:QuickCapture:\n")))))
+(global-set-key (kbd "C-c n q") #'org-roam-quick-capture)
 
 ;; - Publishing org-roam notes
 (setq org-html-validation-link nil
