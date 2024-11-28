@@ -96,7 +96,7 @@
              :publishing-function 'org-html-publish-to-html
              :publishing-directory (file-name-concat org-roam-storage-dir  "publish")
              :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"./style/style.css\" />"
-             :exclude ".*\\(templates\\|personal\\).*"
+             :exclude ".*\\(templates\\|daily\\|quick-capture\\|game-designs\\|personal\\).*"
              :with-author nil
              :with-creator nil
              :with-toc nil           ;; Do not include a table of contents
@@ -111,7 +111,7 @@
              :recursive t
              :base-extension "css\\|png\\|jpg\\|gif"
              :publishing-function 'org-publish-attachment
-             :exclude ".*\\(templates\\|personal\\).*"
+             :exclude ".*\\(templates\\|daily\\|quick-capture\\|game-designs\\|personal\\).*"
              )))
 
 ;; - Keybindings
