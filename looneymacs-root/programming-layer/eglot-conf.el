@@ -200,6 +200,7 @@
 ;;=============================
 (use-package eglot
   :ensure t
+  :defer
   :init
   (setup-rust-analyzer)
   :hook
