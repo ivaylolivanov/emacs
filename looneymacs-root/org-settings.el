@@ -52,6 +52,11 @@
       :unnarrowed t)
      ("p" "personal" plain ""
       :target (file+head "personal/%<%d%m%Y%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)
+     ("r" "cooking recipe" plain
+      (file ,(file-name-concat org-roam-storage-dir
+                               "/templates/cooking-recipe.org"))
+      :target (file+head "%<%d%m%Y%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
    '(("d" "default" entry "* %<%I:%M %p>: %?"
