@@ -17,9 +17,6 @@
 
 
 ;;; Code:
-;; - Activate org
-(require 'org)
-
 ;; - Add time stamp when To-Do is closed
 (setq org-log-done t)
 
