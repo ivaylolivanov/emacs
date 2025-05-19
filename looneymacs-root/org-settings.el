@@ -26,6 +26,10 @@
 
 ;; - Update org-todo-keywords
 (setq org-todo-keywords '((sequence "TODO" "PROG" "DONE")))
+(setq org-todo-keyword-faces
+      '(("TODO" . org-todo)
+        ("PROG" . "Goldenrod")
+        ("DONE" . org-done)))
 
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
