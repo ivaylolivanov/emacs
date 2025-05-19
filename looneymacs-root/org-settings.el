@@ -6,6 +6,7 @@
 ;;=============
 ;; - Activate org
 ;; - Add time stamp when To-Do is closed
+;; - Update org-todo-keywords
 ;; - Specify agenda directories
 ;; - Enable visual-line-mode within org-mode
 ;; - Configure org capture
@@ -22,6 +23,9 @@
 
 ;; - Specify agenda directories
 (setq org-agenda-files (list org-roam-storage-dir))
+
+;; - Update org-todo-keywords
+(setq org-todo-keywords '((sequence "TODO" "PROG" "DONE")))
 
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
