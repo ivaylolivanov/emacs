@@ -23,7 +23,10 @@
 (setq org-log-done t)
 
 ;; - Specify agenda directories
-(setq org-agenda-files (list org-roam-storage-dir))
+(setq org-agenda-files
+      (directory-files-recursively
+       org-roam-storage-dir
+       "\\.org$"))
 
 ;; - Update org-todo-keywords
 (setq org-todo-keywords '((sequence "TODO" "PROG" "DONE")))
