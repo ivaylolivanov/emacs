@@ -45,13 +45,16 @@
      ("g" "game design document" plain
       (file ,(file-name-concat org-roam-storage-dir
                                "/templates/game-design-document.org"))
-      :target (file+head "game-designs/%<%d%m%Y%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :target (file+head "game-designs/%<%d%m%Y%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n")
+      :unnarrowed t)
      ("m" "project management" plain ""
       :target (file+head "project-management/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+filetags: :ProjectManagement:\n")
       :unnarrowed t)
      ("p" "personal" plain ""
-      :target (file+head "personal/%<%d%m%Y%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :target (file+head "personal/%<%d%m%Y%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n")
       :unnarrowed t)
      ("r" "cooking recipe" plain
       (file ,(file-name-concat org-roam-storage-dir
@@ -60,7 +63,8 @@
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
    '(("d" "default" entry "* %<%I:%M %p>: %?"
-      :target (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n#+filetags: :Personal:\n"))))
+      :target (file+head "%<%d-%m-%Y>.org"
+                         "#+title: %<%d-%m-%Y>\n#+filetags: :Personal:\n"))))
   :bind (("C-c n f" . org-roam-node-find)
          (:map org-mode-map
                (("C-c n i" . org-roam-node-insert)
