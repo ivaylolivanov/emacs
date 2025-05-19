@@ -7,6 +7,7 @@
 ;; - Activate org
 ;; - Add time stamp when To-Do is closed
 ;; - Update org-todo-keywords
+;; - Configure archiving TODO entries
 ;; - Specify agenda directories
 ;; - Enable visual-line-mode within org-mode
 ;; - Configure org capture
@@ -30,6 +31,9 @@
       '(("TODO" . org-todo)
         ("PROG" . "Goldenrod")
         ("DONE" . org-done)))
+
+;; - Configure archiving TODO entries
+(setq org-archive-location "%s::* Archived")
 
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
