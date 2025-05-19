@@ -182,10 +182,12 @@
 (make-face 'font-lock-done-face)
 (make-face 'font-lock-warn-face)
 (make-face 'font-lock-note-face)
+(make-face 'font-lock-prog-face)
 (modify-face 'font-lock-todo-face "Dark Orange" nil nil t t t nil nil)
 (modify-face 'font-lock-done-face "Dark Green"  nil nil t t t nil nil)
 (modify-face 'font-lock-note-face "Dark Gray"   nil nil t t t nil nil)
 (modify-face 'font-lock-warn-face "Salmon"      nil nil t t t nil nil)
+(modify-face 'font-lock-prog-face "Goldenrod"   nil nil t t t nil nil)
 
 
 (defun highlight-tags()
@@ -193,6 +195,7 @@
   (font-lock-add-keywords
    nil
    '(("\\<\\(TODO\\)" 1 'font-lock-todo-face t)
+     ("\\<\\(PROG\\)" 1 'font-lock-prog-face t)
      ("\\<\\(DONE\\)" 1 'font-lock-done-face t)
      ("\\<\\(NOTE\\)" 1 'font-lock-note-face t)
      ("\\<\\(WARN\\)" 1 'font-lock-warn-face t))))
