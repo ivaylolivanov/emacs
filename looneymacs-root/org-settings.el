@@ -13,6 +13,7 @@
 ;; - Configure org capture
 ;; - Org roam mode
 ;; - Org Roam Quick Capture
+;; - Make sure htmlize is installed
 ;; - Publishing org-roam notes
 ;; - Keybindings
 
@@ -107,6 +108,12 @@
       :if-new (file+head "quick-capture.org"
                          "#+title: Quick capture\n#+filetags: :Personal:QuickCapture:\n")))))
 (global-set-key (kbd "C-c n q") #'org-roam-quick-capture)
+
+
+;; - Make sure htmlize is installed
+;; It is required by the publish feature.
+(use-package htmlize
+  :ensure t)
 
 ;; - Publishing org-roam notes
 (setq org-html-validation-link nil
