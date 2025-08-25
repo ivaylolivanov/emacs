@@ -26,7 +26,7 @@
 ;;; Code:
 ;; - Constants
 (defconst powershell-unzip-script "powershell -noprofile -noninteractive \
--nologo -ex bypass Expand-Archive -path '%s' -dest '%s'"
+-nologo -ex bypass Expand-Archive -path '%s' -dest '%s' -Force"
   "Powershell script to unzip file.")
 
 (defconst bash-unzip-script
