@@ -1,3 +1,6 @@
+;;; package --- Summary
+;; My rust config
+
 ;;; rust-conf --- This file houses the rust configurations
 
 ;;; Commentary:
@@ -10,11 +13,13 @@
 
 (use-package rust-mode
   :ensure t
+
   :config
-  :hook
-  ;; - Configure rust-mode to auto format the code on save
   (setq rust-format-on-save t)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+
+  :hook
+  (rust-mode . (lambda () (setq indent-tabs-mode nil))))
 
 ;;============================
 
