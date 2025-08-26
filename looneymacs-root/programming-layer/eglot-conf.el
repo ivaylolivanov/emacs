@@ -127,6 +127,18 @@
     (make-directory omnisharp-roslyn-unpack-dir))
   (omnisharp-roslyn-download))
 
+(defun eglot-csharp-select-server ()
+  "Function to select csharp LSP server based on personal preferencies.
+1) - charp-ls
+2) - omnisharp-roslyn
+3) - Shows a reminder to install something."
+  (cond ((executable-find "csharp-ls") (list "csharp-ls"))
+        ((executable-find (get-csharp-language-server-path))
+         (list (get-csharp-language-server-path) "-lsp"))
+        (t (progn
+             (error "ERROR: C# LSP server not found, install one!")
+             nil))))
+
 ;;========================
 
 
