@@ -224,7 +224,7 @@
   (sh-mode     . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               `(csharp-mode . ,(list (get-csharp-language-server-path) "-lsp")))
+               `(csharp-mode . ,(eglot-csharp-select-server)))
   (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode))
 
 ;; ============================
