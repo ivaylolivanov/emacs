@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; init.el --- M00ns7ruck's configurations
 
 ;;; Commentary:
@@ -132,7 +133,16 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   '(htmlize sqlite3 seq org-roam doom-modeline company csharp-mode js2-mode spinner flycheck-rust racer rust-mode lisp-mode elisp-slime-nav paredit counsel slime py-autopep8 elpy lsp-ui lsp-javascript-flow lsp-javascript-typescript lsp-python cquery lsp-clangd spacemacs-theme rainbow-mode rainbow-delimiters use-package ivy yasnippet-snippets neotree flycheck)))
+   '(company counsel cquery csharp-mode doom-modeline editorconfig eglot
+             eldoc elisp-slime-nav elpy erc faceup flycheck
+             flycheck-rust flymake htmlize idlwave ivy js2-mode
+             jsonrpc lisp-mode lsp-clangd lsp-javascript-flow
+             lsp-javascript-typescript lsp-python lsp-ui neotree org
+             org-roam paredit project py-autopep8 python racer
+             rainbow-delimiters rainbow-mode rust-mode seq slime
+             soap-client spacemacs-theme spinner sqlite3 track-changes
+             use-package verilog-mode which-key window-tool-bar xref
+             yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
