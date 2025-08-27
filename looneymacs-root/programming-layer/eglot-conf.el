@@ -225,7 +225,7 @@
   :config
   (add-to-list 'eglot-server-programs
                `(csharp-mode . ,(eglot-csharp-select-server)))
-  (remove-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode))
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider)))
 
 ;; ============================
 
