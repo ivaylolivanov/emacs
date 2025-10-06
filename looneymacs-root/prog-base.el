@@ -16,6 +16,7 @@
 ;; - Align pretty
 ;; - GDB
 ;; - Projectile
+;; - Markdown-mode
 ;; - Magit
 ;; - Paren
 ;; - Rainbow-delimiters
@@ -71,6 +72,19 @@
   (projectile-mode 1)
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 ;;==============
+
+
+
+;; =================
+;; = Markdown-mode =
+;; =================
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
+;; =================
 
 
 
