@@ -94,7 +94,8 @@
   ;;  haki-title-font "Impress BT"
   ;;  haki-link-font "VictorMono Nerd Font"
   ;;  haki-code-font "Maple Mono")
-  (load-theme 'haki t))
+  ;; (load-theme 'haki t)
+  )
 ;; - Beautify UI
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
