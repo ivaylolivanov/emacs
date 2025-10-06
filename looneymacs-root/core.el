@@ -82,6 +82,19 @@
   :defer t
   :init
   (load-theme 'spacemacs-dark t))
+(use-package haki-theme
+  :custom-face
+  (haki-region ((t (:background "#2e8b57" :foreground "#ffffff"))))
+  (haki-highlight ((t (:background "#fafad2" :foreground "#000000"))))
+  :config
+  ;; TODO: Download the nerd-font, then uncomment this
+  ;; (setq
+  ;;  haki-heading-font "Comic Mono"
+  ;;  haki-sans-font "Iosevka Comfy Motion"
+  ;;  haki-title-font "Impress BT"
+  ;;  haki-link-font "VictorMono Nerd Font"
+  ;;  haki-code-font "Maple Mono")
+  (load-theme 'haki t))
 ;; - Beautify UI
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
