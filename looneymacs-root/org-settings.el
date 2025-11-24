@@ -150,5 +150,6 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-roam-capture)
 
+(require 'roam-sync)
 (provide 'org-settings)
 ;;; org-settings.el ends here
