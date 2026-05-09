@@ -36,9 +36,6 @@
         ("PROG" . "Goldenrod")
         ("DONE" . org-done)))
 
-;; - Configure archiving TODO entries
-(setq org-archive-location "%s::* Archived")
-
 ;; - Enable visual-line-mode within org-mode
 (with-eval-after-load 'org
   (setq org-startup-indented t) ; Enable 'org-indent-mode' by default
