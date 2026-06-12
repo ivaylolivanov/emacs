@@ -127,6 +127,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("01f347a923dd21661412d4c5a7c7655bf17fb311b57ddbdbd6fce87bd7e58de6"
+     "8e9e7bbc712ee659c2a1c9d5f2ba42c38ca199ce3d0a982dcad315881a3fcd90"
+     default))
  '(ispell-dictionary nil)
  '(org-roam-db-location "/home/ivaylo/.emacs.d/org-roam.db")
  '(package-archives

@@ -61,6 +61,11 @@
       :target (file+head "game-designs/%<%d%m%Y%H%M%S>-${slug}.org"
                          "#+title: ${title}\n")
       :unnarrowed t)
+     ("l" "lesson plan" plain
+      (file ,(file-name-concat org-roam-storage-dir
+                               "/templates/lesson-plan.org"))
+      :target (file+head "%<%d%m%Y%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)
      ("m" "project management" plain ""
       :target (file+head "project-management/%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+filetags: :ProjectManagement:\n")
