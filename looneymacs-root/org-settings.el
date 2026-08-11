@@ -7,7 +7,6 @@
 ;; - Activate org
 ;; - Add time stamp when To-Do is closed
 ;; - Update org-todo-keywords
-;; - Configure archiving TODO entries
 ;; - Specify agenda directories
 ;; - Enable visual-line-mode within org-mode
 ;; - Configure org capture
@@ -16,7 +15,6 @@
 ;; - Make sure htmlize is installed
 ;; - Publishing org-roam notes
 ;; - Keybindings
-
 
 
 ;;; Code:
@@ -40,6 +38,9 @@
 (with-eval-after-load 'org
   (setq org-startup-indented t) ; Enable 'org-indent-mode' by default
   (add-hook 'org-mode-hook #'visual-line-mode))
+
+;; - Disable org-lint
+(setq-default flycheck-disabled-checkers '(org-lint))
 
 ;; - Org roam mode
 (use-package org-roam
