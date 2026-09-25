@@ -128,7 +128,8 @@
       (setq dashboard-startup-banner dashboard-custom-banner-path)
     (setq dashboard-startup-banner 'logo))
   (setq dashboard-items '((projects . 5)
-			  (recents  . 5)))
+			  (recents  . 5)
+                          (agenda   . 5)))
   (setq dashboard-startupify-list
         '(dashboard-insert-banner
           dashboard-insert-newline
