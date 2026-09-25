@@ -299,10 +299,10 @@
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume))
+  (ivy-mode)
+  (setopt ivy-use-virtual-buffers t)
+  (setopt enable-recursive-minibuffers t)
+  (keymap-global-set "C-c C-r" #'ivy-resume))
 ;;=========
 
 
@@ -313,7 +313,7 @@
 (use-package swiper
   :ensure t
   :config
-  (global-set-key "\C-s" 'swiper))
+  (keymap-global-set "C-s" #'swiper-isearch))
 ;;============
 
 
@@ -324,9 +324,9 @@
 (use-package counsel
   :ensure t
   :config
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  (keymap-global-set "M-x" #'counsel-M-x)
+  (keymap-global-set "C-x C-f" #'counsel-find-file)
+  (keymap-set minibuffer-local-map "C-r" #'counsel-minibuffer-history))
 ;;=============
 
 
