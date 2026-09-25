@@ -136,13 +136,7 @@
  '(package-archives
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
- '(package-selected-packages
-   '(company counsel dashboard editorconfig eglot erc faceup flycheck
-             flymake haki-theme htmlize idlwave magit markdown-mode
-             org-roam peg projectile python rainbow-delimiters
-             rust-mode spacemacs-theme sqlite3 tramp use-package
-             verilog-mode volatile-highlights which-key
-             window-tool-bar yasnippet)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
